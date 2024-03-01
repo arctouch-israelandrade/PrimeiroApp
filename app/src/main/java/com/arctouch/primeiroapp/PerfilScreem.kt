@@ -7,7 +7,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -32,8 +37,33 @@ fun PerfilScreem(navController: NavHostController) {
             fontSize = 24.sp
         )
 
+        var text: String by remember { mutableStateOf("") }
+
+        var idadeSalva: String by remember { mutableStateOf("17") }
+
+        Text(
+            text = "Idade: $idadeSalva",
+            fontSize = 20.sp
+
+        )
+
+        TextField(
+            value = text,
+            onValueChange = { text = it },
+            label = { Text("Idade:")
+
+            }
+        )
+
         Button(
-            onClick = {navController.navigate("home")}
+            onClick = { idadeSalva = text }
+        ){
+            Text("Salvar")
+        }
+
+
+        Button(
+            onClick = { navController.navigate("home") }
 
         ) {
             Text("Home")
