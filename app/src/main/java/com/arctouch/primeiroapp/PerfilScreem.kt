@@ -3,7 +3,9 @@ package com.arctouch.primeiroapp
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -22,54 +24,55 @@ import androidx.navigation.NavHostController
 
 @Composable
 fun PerfilScreem(navController: NavHostController) {
+
+    var text: String by remember { mutableStateOf("") }
+    var idadeSalva: String by remember { mutableStateOf("17") }
+
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
         Image(
             painter = painterResource(id = R.drawable.baseline_account_circle_24),
             contentDescription = "Imagem de perfil",
             modifier = Modifier.size(120.dp)
         )
+
         Text(
-            text = "Israel",
-            fontSize = 24.sp
+            text = "Israel", fontSize = 24.sp
         )
-
-        var text: String by remember { mutableStateOf("") }
-
-        var idadeSalva: String by remember { mutableStateOf("17") }
-
         Text(
-            text = "Idade: $idadeSalva",
-            fontSize = 20.sp
+            text = "Idade: $idadeSalva", fontSize = 20.sp
 
         )
 
-        TextField(
-            value = text,
-            onValueChange = { text = it },
-            label = { Text("Idade:")
+        Row(
+            modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
 
+
+            TextField(value = text, onValueChange = { text = it }, label = {
+                Text("Idade:")
+            })
+
+            Button(onClick = { idadeSalva = text }) {
+                Text("Salvar")
             }
-        )
 
-        Button(
-            onClick = { idadeSalva = text }
-        ){
-            Text("Salvar")
         }
 
-
-        Button(
-            onClick = { navController.navigate("home") }
+        Button(onClick = { navController.navigate("home") }
 
         ) {
-            Text("Home")
+            Text("Lista de Filmes")
 
 
         }
 
     }
+
 }
+
+
