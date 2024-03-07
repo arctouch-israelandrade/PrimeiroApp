@@ -14,21 +14,7 @@ import androidx.navigation.NavHostController
 
 @Composable
 fun Homesreem(navController: NavHostController) {
-    Text(
-        text = "Lista: " +
-                "\n" +
-                "\n" +
-                "1. O Poderoso Chefão\n" +
-                "2. Se Beber, Não Case!\n" +
-                "3. Mad Max: Estrada da Fúria\n" +
-                "4. Interstellar\n" +
-                "5. Toy Story\n" +
-                "6. Harry Potter e a Pedra Filosofal\n" +
-                "7. O Silêncio dos Inocentes\n" +
-                "8. Diário de uma Paixão\n" +
-                "9. La La Land: Cantando Estações\n" +
-                "10. A Marcha dos Pingüins"
-    )
+
     val filmes = listOf(
         "1. O Poderoso Chefão",
         "2. Se Beber, Não Case!",
@@ -41,4 +27,10 @@ fun Homesreem(navController: NavHostController) {
         "9. La La Land: Cantando Estações",
         "10. A Marcha dos Pingüins"
     )
+
+    Column {
+        for (filme in filmes) {
+            Text (text = filme)
+        }
+    }
 }
