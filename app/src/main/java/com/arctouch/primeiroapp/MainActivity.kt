@@ -17,12 +17,14 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.arctouch.primeiroapp.ui.theme.PrimeiroAppTheme
 
@@ -34,20 +36,29 @@ class MainActivity : ComponentActivity() {
         setContent {
             PrimeiroAppTheme {
                 val navController = rememberNavController()
+                val backStackEntry by navController.currentBackStackEntryAsState()
+                val rotaAtual = backStackEntry?.destination?.route
 
                 Scaffold(topBar = {
-                    TopAppBar(
-                        title = { Text("Primeiro APP") },
-                        navigationIcon = {
-                            IconButton(onClick = {navController.popBackStack()}) {
-                                Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+
+                    if(rotaAtual != "perfil"){
+                        TopAppBar(
+                            title = { Text("Primeiro APP") },
+                            navigationIcon = {
+                                IconButton(onClick = {navController.popBackStack()}) {
+                                    Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                                }
                             }
-                        }
-                    )
+                        )
+                    }
+
+
                 }) {
 
                     Surface(
-                        modifier = Modifier.fillMaxSize().padding(it),
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(it),
                         color = MaterialTheme.colorScheme.background
                     ) {
 
