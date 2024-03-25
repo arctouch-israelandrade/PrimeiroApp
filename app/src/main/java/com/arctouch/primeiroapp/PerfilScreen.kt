@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 
 @Composable
-fun PerfilScreem(navController: NavHostController) {
+fun PerfilScreen(navController: NavHostController) {
 
     var text: String by remember { mutableStateOf("") }
     var idadeSalva: String by remember { mutableStateOf("17") }

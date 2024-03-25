@@ -1,19 +1,15 @@
 package com.arctouch.primeiroapp
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.unit.sp
 
 
 @Composable
-fun Homesreem(navController: NavHostController) {
+fun Homescreen(navController: NavHostController) {
 
     val filmes = listOf(
         "1. O Poderoso Chefão",
@@ -29,8 +25,26 @@ fun Homesreem(navController: NavHostController) {
     )
 
     Column {
-        for (filme in filmes) {
-            Text (text = filme)
-        }
+        for (filme in filmes)
+           ClickableText(text = AnnotatedString (filme),
+               onClick = { navController.navigate("detalhes") }
+           )
+
     }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
