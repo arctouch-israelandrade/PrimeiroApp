@@ -17,10 +17,12 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.arctouch.primeiroapp.ui.theme.DetailsScreen
 import com.arctouch.primeiroapp.ui.theme.PrimeiroAppTheme
 
@@ -37,15 +39,12 @@ class MainActivity : ComponentActivity() {
 
                 Scaffold(topBar = {
 
-                    if(rotaAtual != "perfil"){
-                        TopAppBar(
-                            title = { Text("Movies APP") },
-                            navigationIcon = {
-                                IconButton(onClick = {navController.popBackStack()}) {
-                                    Icon(Icons.Default.ArrowBack, contentDescription = "Back")
-                                }
+                    if (rotaAtual != "perfil") {
+                        TopAppBar(title = { Text("Movies APP") }, navigationIcon = {
+                            IconButton(onClick = { navController.popBackStack() }) {
+                                Icon(Icons.Default.ArrowBack, contentDescription = "Back")
                             }
-                        )
+                        })
                     }
 
 
@@ -65,9 +64,14 @@ class MainActivity : ComponentActivity() {
                             composable("home") {
                                 Homescreen(navController = navController)
                             }
-                            composable("detalhes"){
-                                DetailsScreen(navController = navController)
+                            composable("detalhes/{filme}",
+                                arguments = listOf(navArgument("filme") {
+                                    type = NavType.StringType
+                                })
+                            ) {
+                                DetailsScreen(navController = navController, it.arguments?.getString("filme"))
                             }
+
 
                         }
                     }

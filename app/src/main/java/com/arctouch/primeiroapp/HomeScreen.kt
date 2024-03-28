@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.sp
+import androidx.navigation.Navigator
 
 
 @Composable
@@ -27,9 +28,9 @@ fun Homescreen(navController: NavHostController) {
     Column {
         for (filme in filmes)
            ClickableText(text = AnnotatedString (filme),
-               onClick = { navController.navigate("detalhes") }
+               onClick = { navController.navigate("detalhes/$filme" )
+               }
            )
-
     }
 
 
