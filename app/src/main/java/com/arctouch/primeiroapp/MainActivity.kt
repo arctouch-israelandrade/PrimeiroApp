@@ -64,14 +64,19 @@ class MainActivity : ComponentActivity() {
                             composable("home") {
                                 Homescreen(navController = navController)
                             }
-                            composable("detalhes/{filme}",
-                                arguments = listOf(navArgument("filme") {
-                                    type = NavType.StringType
-                                })
+                            composable(
+                                route = "detalhes/{descricao}/{titulo}/{elenco}",
+                                arguments = listOf(
+                                    navArgument("titulo") { type = NavType.StringType },
+                                    navArgument("descricao") { type = NavType.StringType },
+                                    navArgument("elenco") { type = NavType.StringType },
+                                )
                             ) {
-                                DetailsScreen(navController = navController, it.arguments?.getString("filme"))
+                                val titulo = it.arguments?.getString("titulo")
+                                val descricao = it.arguments?.getString("descricao")
+                                val elenco = it.arguments?.getString("elenco")
+                                DetailsScreen(titulo, descricao, elenco)
                             }
-
 
                         }
                     }

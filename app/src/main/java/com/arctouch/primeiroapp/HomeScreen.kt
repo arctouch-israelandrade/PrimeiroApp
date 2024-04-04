@@ -8,27 +8,28 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.sp
 import androidx.navigation.Navigator
 
-
+data class Filme(val titulo: String, val descricao: String, val elenco: String)
 @Composable
 fun Homescreen(navController: NavHostController) {
 
     val filmes = listOf(
-        "1. O Poderoso Chefão",
-        "2. Se Beber, Não Case!",
-        "3. Mad Max: Estrada da Fúria",
-        "4. Interstellar",
-        "5. Toy Story",
-        "6. Harry Potter e a Pedra Filosofal",
-        "7. O Silêncio dos Inocentes",
-        "8. Diário de uma Paixão",
-        "9. La La Land: Cantando Estações",
-        "10. A Marcha dos Pingüins"
+        Filme("Poderoso Chefão", "abc", "a, b, c ,d"),
+        Filme("Se Beber, Não Case!", "abc", "a, b, c ,d"),
+        Filme("Mad Max: Estrada da Fúria", "abc", "a, b, c ,d"),
+        Filme("Interstellar", "abc", "a, b, c ,d"),
+        Filme("Toy Story", "abc", "a, b, c ,d"),
+        Filme("Harry Potter e a Pedra Filosofal", "abc", "a, b, c ,d"),
+        Filme("O Silêncio dos Inocentes", "abc", "a, b, c ,d"),
+        Filme("Diário de uma Paixão", "abc", "a, b, c ,d"),
+        Filme("La La Land: Cantando Estações", "abc", "a, b, c ,d"),
+        Filme("A Marcha dos Pingüins", "abc", "a, b, c ,d"),
     )
 
     Column {
         for (filme in filmes)
-           ClickableText(text = AnnotatedString (filme),
-               onClick = { navController.navigate("detalhes/$filme" )
+           ClickableText(
+               text = AnnotatedString (filme.titulo),
+               onClick = { navController.navigate("detalhes/${filme.titulo}/${filme.descricao}/${filme.elenco}" )
                }
            )
     }
