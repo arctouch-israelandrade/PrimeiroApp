@@ -65,7 +65,7 @@ class MainActivity : ComponentActivity() {
                                 Homescreen(navController = navController)
                             }
                             composable(
-                                route = "detalhes/{descricao}/{titulo}/{elenco}",
+                                route = "detalhes/{titulo}/{descricao}/{elenco}",
                                 arguments = listOf(
                                     navArgument("titulo") { type = NavType.StringType },
                                     navArgument("descricao") { type = NavType.StringType },
