@@ -1,5 +1,7 @@
 package com.arctouch.primeiroapp
 
+import android.os.Bundle
+import android.os.Parcelable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.runtime.Composable
@@ -7,8 +9,15 @@ import androidx.navigation.NavHostController
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.sp
 import androidx.navigation.Navigator
+import androidx.versionedparcelable.VersionedParcelize
+import kotlinx.android.parcel.Parcelize
 
-data class Filme(val titulo: String, val descricao: String, val elenco: String)
+@Parcelize
+data class Filme(
+    val titulo: String,
+    val descricao: String,
+    val elenco: String
+): Parcelable
 
 @Composable
 fun Homescreen(navController: NavHostController) {
@@ -165,7 +174,8 @@ fun Homescreen(navController: NavHostController) {
             ClickableText(
                 text = AnnotatedString(filme.titulo),
                 onClick = {
-                    navController.navigate("detalhes/${filme.titulo}/${filme.descricao}/${filme.elenco}")
+                    navController.currentBackStackEntry?.savedStateHandle?.set("filme", filme)
+                    navController.navigate("detalhes")
                 }
             )
     }

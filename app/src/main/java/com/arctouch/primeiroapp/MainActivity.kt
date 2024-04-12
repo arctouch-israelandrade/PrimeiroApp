@@ -1,8 +1,11 @@
 package com.arctouch.primeiroapp
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -17,6 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -29,6 +33,7 @@ import com.arctouch.primeiroapp.ui.theme.PrimeiroAppTheme
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
 
+    @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -36,7 +41,6 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 val backStackEntry by navController.currentBackStackEntryAsState()
                 val rotaAtual = backStackEntry?.destination?.route
-
                 Scaffold(topBar = {
 
                     if (rotaAtual != "perfil") {
@@ -44,7 +48,8 @@ class MainActivity : ComponentActivity() {
                             IconButton(onClick = { navController.popBackStack() }) {
                                 Icon(Icons.Default.ArrowBack, contentDescription = "Back")
                             }
-                        })
+                        }
+                        )
                     }
 
 
@@ -65,17 +70,13 @@ class MainActivity : ComponentActivity() {
                                 Homescreen(navController = navController)
                             }
                             composable(
-                                route = "detalhes/{titulo}/{descricao}/{elenco}",
-                                arguments = listOf(
-                                    navArgument("titulo") { type = NavType.StringType },
-                                    navArgument("descricao") { type = NavType.StringType },
-                                    navArgument("elenco") { type = NavType.StringType },
-                                )
+                                route = "detalhes",
                             ) {
-                                val titulo = it.arguments?.getString("titulo")
-                                val descricao = it.arguments?.getString("descricao")
-                                val elenco = it.arguments?.getString("elenco")
-                                DetailsScreen(titulo, descricao, elenco)
+                                val filme =
+                                    navController.previousBackStackEntry?.savedStateHandle?.get<Filme>(
+                                        "filme"
+                                    )
+                                DetailsScreen(filme)
                             }
 
                         }
