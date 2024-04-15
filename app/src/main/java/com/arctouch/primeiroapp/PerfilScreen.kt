@@ -25,8 +25,10 @@ import androidx.navigation.NavHostController
 @Composable
 fun PerfilScreen(navController: NavHostController) {
 
-    var text: String by remember { mutableStateOf("") }
-    var idadeSalva: String by remember { mutableStateOf("17") }
+    var nome: String by remember { mutableStateOf("") }
+    var idade: String by remember { mutableStateOf("") }
+    var idadeSalva: String by remember { mutableStateOf("add year") }
+    var nomesalva: String by remember { mutableStateOf("add name") }
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -41,7 +43,7 @@ fun PerfilScreen(navController: NavHostController) {
         )
 
         Text(
-            text = "Israel", fontSize = 24.sp
+            text = "Nome: $nomesalva", fontSize = 24.sp
         )
         Text(
             text = "Idade: $idadeSalva", fontSize = 20.sp
@@ -53,14 +55,34 @@ fun PerfilScreen(navController: NavHostController) {
         ) {
 
 
-            TextField(value = text, onValueChange = { text = it }, label = {
-                Text("Idade:")
-            })
+            Column {
 
-            Button(onClick = { idadeSalva = text }) {
-                Text("Salvar")
+
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    TextField(value = nome, onValueChange = { nome = it }, label = {
+                        Text("Nome:")
+                    })
+
+                    Button(onClick = { nomesalva = nome }) {
+                        Text("Salvar")
+                    }
+                }
+                Row(
+                    modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    TextField(value = idade, onValueChange = { idade = it }, label = {
+                        Text("Idade:")
+                    })
+
+                    Button(onClick = { idadeSalva = idade }) {
+                        Text("Salvar")
+                    }
+                }
+
             }
-
         }
 
         Button(onClick = { navController.navigate("home") }
