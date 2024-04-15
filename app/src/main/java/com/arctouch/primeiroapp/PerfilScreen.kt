@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -25,10 +26,10 @@ import androidx.navigation.NavHostController
 @Composable
 fun PerfilScreen(navController: NavHostController) {
 
-    var nome: String by remember { mutableStateOf("") }
-    var idade: String by remember { mutableStateOf("") }
-    var idadeSalva: String by remember { mutableStateOf("add year") }
-    var nomesalva: String by remember { mutableStateOf("add name") }
+    var nome: String by rememberSaveable { mutableStateOf("") }
+    var idade: String by rememberSaveable { mutableStateOf("") }
+    var idadeSalva: String by rememberSaveable { mutableStateOf("add year") }
+    var nomesalva: String by rememberSaveable { mutableStateOf("add name") }
 
     Column(
         modifier = Modifier.fillMaxSize(),
