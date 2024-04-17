@@ -28,6 +28,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.arctouch.primeiroapp.ui.theme.DetailsScreen
+import com.arctouch.primeiroapp.ui.theme.NewScreen
 import com.arctouch.primeiroapp.ui.theme.PrimeiroAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -69,6 +70,9 @@ class MainActivity : ComponentActivity() {
                             composable("home") {
                                 Homescreen(navController = navController)
                             }
+                            composable("novatela") {
+                                NewScreen(navController = navController)
+                            }
                             composable(
                                 route = "detalhes",
                             ) {
@@ -81,12 +85,11 @@ class MainActivity : ComponentActivity() {
 
                         }
                     }
-                }
 
+                }
             }
         }
     }
 }
-
 
 

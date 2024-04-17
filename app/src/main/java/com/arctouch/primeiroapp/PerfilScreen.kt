@@ -91,6 +91,11 @@ fun PerfilScreen(navController: NavHostController) {
             Text("Lista de Filmes")
 
         }
+        Button(onClick = { navController.navigate("novatela") }) {
+
+            Text("Nova tela")
+
+        }
     }
 }
 
