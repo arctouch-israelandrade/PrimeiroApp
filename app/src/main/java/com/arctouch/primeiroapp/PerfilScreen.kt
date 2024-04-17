@@ -4,8 +4,10 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
@@ -25,7 +27,6 @@ import androidx.navigation.NavHostController
 
 @Composable
 fun PerfilScreen(navController: NavHostController) {
-
     var nome: String by rememberSaveable { mutableStateOf("") }
     var idade: String by rememberSaveable { mutableStateOf("") }
     var idadeSalva: String by rememberSaveable { mutableStateOf("add year") }
@@ -35,7 +36,8 @@ fun PerfilScreen(navController: NavHostController) {
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
-    ) {
+    )
+    {
 
         Image(
             painter = painterResource(id = R.drawable.baseline_account_circle_24),
@@ -43,59 +45,53 @@ fun PerfilScreen(navController: NavHostController) {
             modifier = Modifier.size(120.dp)
         )
 
+        Spacer(modifier = Modifier.height(16.dp))
+
         Text(
             text = "Nome: $nomesalva", fontSize = 24.sp
         )
-        Text(
-            text = "Idade: $idadeSalva", fontSize = 20.sp
 
+        Text(
+            text = "Idade: $idadeSalva", fontSize = 24.sp
         )
+
+        Spacer(modifier = Modifier.height(16.dp))
 
         Row(
             modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-
-
+        )
+        {
             Column {
 
+                TextField(value = nome, onValueChange = { nome = it }, label = {
+                    Text("Nome:")
+                })
 
 
-                Row(
-                    modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly
-                ) {
-                    TextField(value = nome, onValueChange = { nome = it }, label = {
-                        Text("Nome:")
-                    })
+                TextField(value = idade, onValueChange = { idade = it }, label = {
+                    Text("Idade:")
 
-                    Button(onClick = { nomesalva = nome }) {
-                        Text("Salvar")
-                    }
                 }
-                Row(
-                    modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly
-                ) {
-                    TextField(value = idade, onValueChange = { idade = it }, label = {
-                        Text("Idade:")
-                    })
+                )
 
-                    Button(onClick = { idadeSalva = idade }) {
-                        Text("Salvar")
-                    }
-                }
 
             }
         }
 
-        Button(onClick = { navController.navigate("home") }
-
-        ) {
-            Text("Lista de Filmes")
-
+        Button(onClick = {
+            idadeSalva = idade
+            nomesalva = nome
+        }) {
+            Text("Salvar")
 
         }
 
-    }
+        Button(onClick = { navController.navigate("home") }) {
 
+            Text("Lista de Filmes")
+
+        }
+    }
 }
 
 
