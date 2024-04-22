@@ -29,8 +29,8 @@ import androidx.navigation.NavHostController
 fun PerfilScreen(navController: NavHostController) {
     var nome: String by rememberSaveable { mutableStateOf("") }
     var idade: String by rememberSaveable { mutableStateOf("") }
-    var idadeSalva: String by rememberSaveable { mutableStateOf("add year") }
-    var nomesalva: String by rememberSaveable { mutableStateOf("add name") }
+    var idadeSalva: String by rememberSaveable { mutableStateOf("-") }
+    var nomesalva: String by rememberSaveable { mutableStateOf("-") }
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -89,11 +89,6 @@ fun PerfilScreen(navController: NavHostController) {
         Button(onClick = { navController.navigate("home") }) {
 
             Text("Lista de Filmes")
-
-        }
-        Button(onClick = { navController.navigate("novatela") }) {
-
-            Text("Nova tela")
 
         }
     }

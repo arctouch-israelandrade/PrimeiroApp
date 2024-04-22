@@ -4,8 +4,6 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -20,25 +18,20 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import com.arctouch.primeiroapp.ui.theme.DetailsScreen
-import com.arctouch.primeiroapp.ui.theme.NewScreen
 import com.arctouch.primeiroapp.ui.theme.PrimeiroAppTheme
-
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
-
     @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             PrimeiroAppTheme {
+
                 val navController = rememberNavController()
                 val backStackEntry by navController.currentBackStackEntryAsState()
                 val rotaAtual = backStackEntry?.destination?.route
@@ -63,15 +56,12 @@ class MainActivity : ComponentActivity() {
                         color = MaterialTheme.colorScheme.background
                     ) {
 
-                        NavHost(navController = navController, startDestination = "perfil") {
-                            composable("perfil") {
+                        NavHost(navController = navController, startDestination = Home) {
+                            composable(Home) {
                                 PerfilScreen(navController = navController)
                             }
                             composable("home") {
                                 Homescreen(navController = navController)
-                            }
-                            composable("novatela") {
-                                NewScreen(navController = navController)
                             }
                             composable(
                                 route = "detalhes",
@@ -84,6 +74,7 @@ class MainActivity : ComponentActivity() {
                             }
 
                         }
+
                     }
 
                 }
@@ -91,5 +82,8 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+const val Perfil = "perfil"
+const val Home = "home"
+const val Detalhes = "detalhes"
 
 
