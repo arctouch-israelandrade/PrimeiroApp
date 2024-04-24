@@ -29,7 +29,10 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.arctouch.primeiroapp.ui.theme.DetailsScreen
 import com.arctouch.primeiroapp.ui.theme.PrimeiroAppTheme
-
+const val Perfil = "perfil"
+const val Home = "home"
+const val Detalhes = "detalhes"
+const val Filmes = "filme"
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
 
@@ -43,7 +46,7 @@ class MainActivity : ComponentActivity() {
                 val rotaAtual = backStackEntry?.destination?.route
                 Scaffold(topBar = {
 
-                    if (rotaAtual != "perfil") {
+                    if (rotaAtual != Perfil) {
                         TopAppBar(title = { Text("Movies APP") }, navigationIcon = {
                             IconButton(onClick = { navController.popBackStack() }) {
                                 Icon(Icons.Default.ArrowBack, contentDescription = "Back")
@@ -62,19 +65,19 @@ class MainActivity : ComponentActivity() {
                         color = MaterialTheme.colorScheme.background
                     ) {
 
-                        NavHost(navController = navController, startDestination = "perfil") {
-                            composable("perfil") {
+                        NavHost(navController = navController, startDestination = Home) {
+                            composable(Home) {
                                 PerfilScreen(navController = navController)
                             }
-                            composable("home") {
+                            composable(Home) {
                                 Homescreen(navController = navController)
                             }
                             composable(
-                                route = "detalhes",
+                                route = Detalhes,
                             ) {
                                 val filme =
                                     navController.previousBackStackEntry?.savedStateHandle?.get<Filme>(
-                                        "filme"
+                                        Filmes
                                     )
                                 DetailsScreen(filme)
                             }

@@ -86,7 +86,7 @@ fun PerfilScreen(navController: NavHostController) {
 
         }
 
-        Button(onClick = { navController.navigate("home") }) {
+        Button(onClick = { navController.navigate(Home) }) {
 
             Text("Lista de Filmes")
 

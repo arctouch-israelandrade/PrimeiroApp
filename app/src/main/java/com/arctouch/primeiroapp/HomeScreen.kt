@@ -181,7 +181,7 @@ fun Homescreen(navController: NavHostController) {
                     text = AnnotatedString(filme.titulo),
                     onClick = {
                         navController.currentBackStackEntry?.savedStateHandle?.set("filme", filme)
-                        navController.navigate("detalhes")
+                        navController.navigate(Detalhes)
                     },
                 )
         }
