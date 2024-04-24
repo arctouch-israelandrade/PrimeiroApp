@@ -24,6 +24,9 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.arctouch.primeiroapp.ui.theme.DetailsScreen
 import com.arctouch.primeiroapp.ui.theme.PrimeiroAppTheme
+const val Perfil = "perfil"
+const val Home = "home"
+const val Detalhes = "detalhes"
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
     @SuppressLint("NewApi")
@@ -37,7 +40,7 @@ class MainActivity : ComponentActivity() {
                 val rotaAtual = backStackEntry?.destination?.route
                 Scaffold(topBar = {
 
-                    if (rotaAtual != "perfil") {
+                    if (rotaAtual != Perfil) {
                         TopAppBar(title = { Text("Movies APP") }, navigationIcon = {
                             IconButton(onClick = { navController.popBackStack() }) {
                                 Icon(Icons.Default.ArrowBack, contentDescription = "Back")
@@ -56,15 +59,15 @@ class MainActivity : ComponentActivity() {
                         color = MaterialTheme.colorScheme.background
                     ) {
 
-                        NavHost(navController = navController, startDestination = Home) {
-                            composable(Home) {
+                        NavHost(navController = navController, startDestination = Perfil) {
+                            composable(Perfil) {
                                 PerfilScreen(navController = navController)
                             }
-                            composable("home") {
+                            composable(Home) {
                                 Homescreen(navController = navController)
                             }
                             composable(
-                                route = "detalhes",
+                                route = Detalhes,
                             ) {
                                 val filme =
                                     navController.previousBackStackEntry?.savedStateHandle?.get<Filme>(
@@ -72,18 +75,13 @@ class MainActivity : ComponentActivity() {
                                     )
                                 DetailsScreen(filme)
                             }
-
                         }
-
                     }
-
                 }
             }
         }
     }
 }
-const val Perfil = "perfil"
-const val Home = "home"
-const val Detalhes = "detalhes"
+
 
 
