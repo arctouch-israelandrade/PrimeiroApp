@@ -10,6 +10,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -29,10 +32,12 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.arctouch.primeiroapp.ui.theme.DetailsScreen
 import com.arctouch.primeiroapp.ui.theme.PrimeiroAppTheme
+
 const val Perfil = "perfil"
 const val Home = "home"
 const val Detalhes = "detalhes"
 const val Filmes = "filme"
+
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
 
@@ -45,11 +50,10 @@ class MainActivity : ComponentActivity() {
                 val backStackEntry by navController.currentBackStackEntryAsState()
                 val rotaAtual = backStackEntry?.destination?.route
                 Scaffold(topBar = {
-
                     if (rotaAtual != Perfil) {
                         TopAppBar(title = { Text("Movies APP") }, navigationIcon = {
-                            IconButton(onClick = { navController.popBackStack() }) {
-                                Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                            IconButton(onClick = { navController.navigate(Perfil) }) {
+                                Icon(Icons.Default.Person, contentDescription = "Back")
                             }
                         }
                         )
@@ -81,11 +85,14 @@ class MainActivity : ComponentActivity() {
                                     )
                                 DetailsScreen(filme)
                             }
-
+                            composable(
+                                route = Perfil,
+                            ) {
+                                PerfilScreen(navController = navController)
+                            }
                         }
                     }
                 }
-
             }
         }
     }
