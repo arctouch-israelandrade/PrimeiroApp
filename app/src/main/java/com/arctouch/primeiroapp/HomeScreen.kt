@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.TextFieldColors
 import androidx.compose.runtime.Composable
@@ -170,7 +171,7 @@ fun Homescreen(navController: NavHostController) {
             ),
             Filme(
                 "A Marcha dos Pingüins",
-                "\"A Marcha dos Pingüins\" é um documentário emocionante que retrata a jornada extraordinária dos pinguins-imperadores na Antártida. Narrado por Morgan Freeman na versão em inglês, o filme mostra a incrível luta pela sobrevivência dessas aves durante sua migração anual para o local de reprodução, o desafio de incubação dos ovos e o cuidado com os filhotes em um ambiente extremamente hostil. Com imagens deslumbrantes e uma narrativa envolvente, o documentário cativa o público ao revelar a beleza e a determinação dessas criaturas incríveis.",
+                "\"A Marcha dos Pingüins\" é um documentário emocionante que retrata a jornada extraordinária dos pinguins-imperadores na Antártida. Narrado por Morgan Freeman na versão em inglês, o filme mostra a incrível luta pela sobrevivência dessas aves durante sua migração anual para o local de reprodução, o desafio de incubação dos ovos e o cuidado com os filhotes em um ambiente extremamente hostil. Com imagens deslumbrantes e uma narrativa envolvente, o documentário cativa o público ao revelar a beleza e a determinação dessas criaturas incríveis qegvfjhewgfhgvkuyqebchqwuycbqwuhyqwyuc wyfg yufguyiwqhef qywgfeihfuygwuhfuqwyfbuyqhwuifhyqufyubqyy      wbweyucu uegfuhuy   foiu        uhgfyugw    yufg    iufuywgfuywfuyfgiuwhfygfgffggff gfgfhwuifguio   foiugwuifhiufguiwgfuwefgweuuwgfyyfegyfygfefefeyguywgfyuwg   fw7833322terr   w   ygwduhduifhsdfhvuisnjghsufvbsejsbjvnsdnvusushvuhjbybiuhgjofhbujkngjimswhiuouihgyfttgfvbjoao joafoajfoajofoafjojfljfjjfjfjfjfjffffjjjjfjfjjfjfjfjjfjjfjfjjjjfjfjfjfjjfjfjfjfjjfjjfjfjjfjfjjfjjfjfjjfjjf.",
                 "Em documentários, não há um elenco de atores tradicionais, já que o filme é uma representação da vida real. No entanto, na versão em inglês de \"A Marcha dos Pingüins\", Morgan Freeman emprestou sua voz para a narração, fornecendo uma voz envolvente e informativa para o documentário. Portanto, ele é frequentemente associado ao filme como o narrador na versão em inglês. Fora isso, não há elenco de atores como em filmes de ficção, já que o filme se concentra na vida selvagem e na observação da natureza."
             ),
         )
@@ -181,7 +182,7 @@ fun Homescreen(navController: NavHostController) {
                     text = AnnotatedString(filme.titulo),
                     onClick = {
                         navController.currentBackStackEntry?.savedStateHandle?.set("filme", filme)
-                        navController.navigate(Detalhes)
+                        navController.navigate(DETALHES)
                     },
                 )
         }

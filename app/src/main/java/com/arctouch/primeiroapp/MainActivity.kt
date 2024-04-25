@@ -33,10 +33,10 @@ import androidx.navigation.navArgument
 import com.arctouch.primeiroapp.ui.theme.DetailsScreen
 import com.arctouch.primeiroapp.ui.theme.PrimeiroAppTheme
 
-const val Perfil = "perfil"
-const val Home = "home"
-const val Detalhes = "detalhes"
-const val Filmes = "filme"
+const val PERFIL = "perfil"
+const val HOME = "home"
+const val DETALHES = "detalhes"
+const val FILMES = "filme"
 
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
@@ -50,9 +50,9 @@ class MainActivity : ComponentActivity() {
                 val backStackEntry by navController.currentBackStackEntryAsState()
                 val rotaAtual = backStackEntry?.destination?.route
                 Scaffold(topBar = {
-                    if (rotaAtual != Perfil) {
+                    if (rotaAtual != PERFIL) {
                         TopAppBar(title = { Text("Movies APP") }, navigationIcon = {
-                            IconButton(onClick = { navController.navigate(Perfil) }) {
+                            IconButton(onClick = { navController.navigate(PERFIL) }) {
                                 Icon(Icons.Default.Person, contentDescription = "Back")
                             }
                         }
@@ -69,24 +69,24 @@ class MainActivity : ComponentActivity() {
                         color = MaterialTheme.colorScheme.background
                     ) {
 
-                        NavHost(navController = navController, startDestination = Home) {
-                            composable(Home) {
+                        NavHost(navController = navController, startDestination = HOME) {
+                            composable(HOME) {
                                 PerfilScreen(navController = navController)
                             }
-                            composable(Home) {
+                            composable(HOME) {
                                 Homescreen(navController = navController)
                             }
                             composable(
-                                route = Detalhes,
+                                route = DETALHES,
                             ) {
                                 val filme =
                                     navController.previousBackStackEntry?.savedStateHandle?.get<Filme>(
-                                        Filmes
+                                        FILMES
                                     )
                                 DetailsScreen(filme)
                             }
                             composable(
-                                route = Perfil,
+                                route = PERFIL,
                             ) {
                                 PerfilScreen(navController = navController)
                             }
