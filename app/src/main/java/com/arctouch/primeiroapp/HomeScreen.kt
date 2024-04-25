@@ -183,6 +183,7 @@ fun Homescreen(navController: NavHostController) {
                     onClick = {
                         navController.currentBackStackEntry?.savedStateHandle?.set("filme", filme)
                         navController.navigate(DETALHES)
+
                     },
                 )
         }
