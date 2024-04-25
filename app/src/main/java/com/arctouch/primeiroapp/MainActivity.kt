@@ -4,8 +4,6 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -20,30 +18,29 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import com.arctouch.primeiroapp.ui.theme.DetailsScreen
 import com.arctouch.primeiroapp.ui.theme.PrimeiroAppTheme
-
+const val Perfil = "perfil"
+const val Home = "home"
+const val Detalhes = "detalhes"
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
-
     @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             PrimeiroAppTheme {
+
                 val navController = rememberNavController()
                 val backStackEntry by navController.currentBackStackEntryAsState()
                 val rotaAtual = backStackEntry?.destination?.route
                 Scaffold(topBar = {
 
-                    if (rotaAtual != "perfil") {
+                    if (rotaAtual != Perfil) {
                         TopAppBar(title = { Text("Movies APP") }, navigationIcon = {
                             IconButton(onClick = { navController.popBackStack() }) {
                                 Icon(Icons.Default.ArrowBack, contentDescription = "Back")
@@ -62,15 +59,15 @@ class MainActivity : ComponentActivity() {
                         color = MaterialTheme.colorScheme.background
                     ) {
 
-                        NavHost(navController = navController, startDestination = "perfil") {
-                            composable("perfil") {
+                        NavHost(navController = navController, startDestination = Perfil) {
+                            composable(Perfil) {
                                 PerfilScreen(navController = navController)
                             }
-                            composable("home") {
+                            composable(Home) {
                                 Homescreen(navController = navController)
                             }
                             composable(
-                                route = "detalhes",
+                                route = Detalhes,
                             ) {
                                 val filme =
                                     navController.previousBackStackEntry?.savedStateHandle?.get<Filme>(
@@ -78,11 +75,9 @@ class MainActivity : ComponentActivity() {
                                     )
                                 DetailsScreen(filme)
                             }
-
                         }
                     }
                 }
-
             }
         }
     }
