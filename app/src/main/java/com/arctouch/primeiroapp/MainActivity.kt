@@ -55,6 +55,15 @@ class MainActivity : ComponentActivity() {
                         )
                     }
 
+                    if (rotaAtual != HOME) {
+                        TopAppBar(title = { Text("Movies APP") }, navigationIcon = {
+                            IconButton(onClick = { navController.navigate(HOME) }) {
+                                Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                            }
+                        }
+                        )
+                    }
+
 
                 }) {
 
