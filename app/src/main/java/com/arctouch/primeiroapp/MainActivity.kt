@@ -51,9 +51,9 @@ class MainActivity : ComponentActivity() {
                 val rotaAtual = backStackEntry?.destination?.route
                 Scaffold(topBar = {
                     if (rotaAtual != PERFIL) {
-                        TopAppBar(title = { Text("Movies APP") }, navigationIcon = {
+                        TopAppBar(title = { Text("Movies APP") }, actions = {
                             IconButton(onClick = { navController.navigate(PERFIL) }) {
-                                Icon(Icons.Default.Person, contentDescription = "Back")
+                                Icon(Icons.Default.Person, contentDescription = "Tela de perfil")
                             }
                         }
                         )
