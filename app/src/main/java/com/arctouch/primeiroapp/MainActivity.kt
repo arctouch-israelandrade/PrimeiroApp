@@ -8,6 +8,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -24,9 +27,12 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.arctouch.primeiroapp.ui.theme.DetailsScreen
 import com.arctouch.primeiroapp.ui.theme.PrimeiroAppTheme
-const val Perfil = "perfil"
-const val Home = "home"
-const val Detalhes = "detalhes"
+
+const val PERFIL = "perfil"
+const val HOME = "home"
+const val DETALHES = "detalhes"
+const val FILMES = "filme"
+
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
     @SuppressLint("NewApi")
@@ -40,14 +46,24 @@ class MainActivity : ComponentActivity() {
                 val rotaAtual = backStackEntry?.destination?.route
                 Scaffold(topBar = {
 
-                    if (rotaAtual != Perfil) {
+                    if (rotaAtual != PERFIL) {
+                        TopAppBar(title = { Text("Movies APP") }, actions = {
+                            IconButton(onClick = { navController.navigate(PERFIL) }) {
+                                Icon(Icons.Default.Person, contentDescription = "Tela de perfil")
+                            }
+                        }
+                        )
+                    }
+
+                    if (rotaAtual != HOME) {
                         TopAppBar(title = { Text("Movies APP") }, navigationIcon = {
-                            IconButton(onClick = { navController.popBackStack() }) {
+                            IconButton(onClick = { navController.navigate(HOME) }) {
                                 Icon(Icons.Default.ArrowBack, contentDescription = "Back")
                             }
                         }
                         )
                     }
+
 
 
                 }) {
@@ -59,21 +75,27 @@ class MainActivity : ComponentActivity() {
                         color = MaterialTheme.colorScheme.background
                     ) {
 
-                        NavHost(navController = navController, startDestination = Perfil) {
-                            composable(Perfil) {
+                        NavHost(navController = navController, startDestination = HOME) {
+                            composable(HOME) {
                                 PerfilScreen(navController = navController)
                             }
-                            composable(Home) {
+                            composable(HOME) {
                                 Homescreen(navController = navController)
                             }
                             composable(
-                                route = Detalhes,
+                                route = DETALHES,
                             ) {
                                 val filme =
                                     navController.previousBackStackEntry?.savedStateHandle?.get<Filme>(
-                                        "filme"
+                                        FILMES
                                     )
                                 DetailsScreen(filme)
+                            }
+
+                            composable(
+                                route = PERFIL,
+                            ) {
+                                PerfilScreen(navController = navController)
                             }
                         }
                     }
