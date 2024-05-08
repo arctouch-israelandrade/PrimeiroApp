@@ -1,6 +1,7 @@
 package com.arctouch.primeiroapp
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -8,8 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -65,7 +64,6 @@ class MainActivity : ComponentActivity() {
                     }
 
 
-
                 }) {
 
                     Surface(
@@ -77,10 +75,7 @@ class MainActivity : ComponentActivity() {
 
                         NavHost(navController = navController, startDestination = HOME) {
                             composable(HOME) {
-                                PerfilScreen(navController = navController)
-                            }
-                            composable(HOME) {
-                                Homescreen(navController = navController)
+                                Homescreen(navController = navController, context = this)
                             }
                             composable(
                                 route = DETALHES,
@@ -95,7 +90,7 @@ class MainActivity : ComponentActivity() {
                             composable(
                                 route = PERFIL,
                             ) {
-                                PerfilScreen(navController = navController)
+                                PerfilScreen(navController = navController, context = this@MainActivity)
                             }
                         }
                     }

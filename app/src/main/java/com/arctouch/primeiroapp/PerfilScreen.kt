@@ -1,6 +1,6 @@
 package com.arctouch.primeiroapp
 
-import androidx.compose.foundation.Image
+import android.content.Context
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,32 +15,31 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import coil.compose.AsyncImage
+import coil.imageLoader
 
 @Composable
-fun PerfilScreen(navController: NavHostController) {
+fun PerfilScreen(navController: NavHostController, context: Context) {
     var nome: String by rememberSaveable { mutableStateOf("") }
     var idade: String by rememberSaveable { mutableStateOf("") }
     var idadeSalva: String by rememberSaveable { mutableStateOf("-") }
     var nomesalva: String by rememberSaveable { mutableStateOf("-") }
-
+    val imageLoader = context.imageLoader
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     )
     {
-
-        Image(
-            painter = painterResource(id = R.drawable.baseline_account_circle_24),
+        AsyncImage(
+            model = "https://images.app.goo.gl/ov1ubzJvDMf2eEMn9",
             contentDescription = "Imagem de perfil",
             modifier = Modifier.size(120.dp)
         )
@@ -93,6 +92,7 @@ fun PerfilScreen(navController: NavHostController) {
 
         }
     }
+
 }
 
 

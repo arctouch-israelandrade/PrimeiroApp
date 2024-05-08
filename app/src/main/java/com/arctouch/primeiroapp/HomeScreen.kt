@@ -1,8 +1,6 @@
 package com.arctouch.primeiroapp
 
-import android.os.Bundle
 import android.os.Parcelable
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -32,7 +30,7 @@ data class Filme(
 ) : Parcelable
 
 @Composable
-fun Homescreen(navController: NavHostController) {
+fun Homescreen(navController: NavHostController, context: Any) {
     val filmes = listOf(
 
         Filme(
