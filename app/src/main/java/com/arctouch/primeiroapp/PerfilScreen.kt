@@ -39,9 +39,9 @@ fun PerfilScreen(navController: NavHostController, context: Context) {
     )
     {
         AsyncImage(
-            model = "https://images.app.goo.gl/ov1ubzJvDMf2eEMn9",
+            model = "https://thumbs.dreamstime.com/b/%C3%ADcone-do-avatar-usu%C3%A1rio-bot%C3%A3o-s%C3%ADmbolo-perfil-liso-da-pessoa-vetor-131363829.jpg",
             contentDescription = "Imagem de perfil",
-            modifier = Modifier.size(120.dp)
+            modifier = Modifier.size(120.dp),
         )
 
         Spacer(modifier = Modifier.height(16.dp))
