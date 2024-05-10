@@ -75,7 +75,7 @@ class MainActivity : ComponentActivity() {
 
                         NavHost(navController = navController, startDestination = HOME) {
                             composable(HOME) {
-                                Homescreen(navController = navController, context = this)
+                                Homescreen(navController = navController)
                             }
                             composable(
                                 route = DETALHES,
@@ -90,7 +90,7 @@ class MainActivity : ComponentActivity() {
                             composable(
                                 route = PERFIL,
                             ) {
-                                PerfilScreen(navController = navController, context = this@MainActivity)
+                                PerfilScreen(navController = navController)
                             }
                         }
                     }

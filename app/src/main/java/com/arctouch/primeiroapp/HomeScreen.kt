@@ -1,5 +1,6 @@
 package com.arctouch.primeiroapp
 
+import android.annotation.SuppressLint
 import android.os.Parcelable
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -29,6 +30,7 @@ data class Filme(
     val elenco: String,
 ) : Parcelable
 
+@SuppressLint("SuspiciousIndentation")
 @Composable
 fun Homescreen(navController: NavHostController) {
     val filmes = listOf(
