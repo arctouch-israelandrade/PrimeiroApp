@@ -30,7 +30,7 @@ data class Filme(
 ) : Parcelable
 
 @Composable
-fun Homescreen(navController: NavHostController, context: Any) {
+fun Homescreen(navController: NavHostController) {
     val filmes = listOf(
 
         Filme(
