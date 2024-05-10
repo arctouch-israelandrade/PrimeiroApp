@@ -35,8 +35,7 @@ fun PerfilScreen(navController: NavHostController) {
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
-    )
-    {
+    ) {
         AsyncImage(
             model = "https://cdn-icons-png.flaticon.com/512/4792/4792929.png",
             contentDescription = "Imagem de perfil",
@@ -57,8 +56,7 @@ fun PerfilScreen(navController: NavHostController) {
 
         Row(
             modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly
-        )
-        {
+        ) {
             Column {
 
                 TextField(value = nome, onValueChange = { nome = it }, label = {
@@ -69,8 +67,7 @@ fun PerfilScreen(navController: NavHostController) {
                 TextField(value = idade, onValueChange = { idade = it }, label = {
                     Text("Idade:")
 
-                }
-                )
+                })
 
 
             }

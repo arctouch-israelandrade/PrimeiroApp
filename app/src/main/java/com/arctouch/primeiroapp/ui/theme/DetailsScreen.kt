@@ -21,13 +21,13 @@ import com.arctouch.primeiroapp.Filme
 @Composable
 fun DetailsScreen(filme: Filme?) {
 
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(color = Color.Black)
-                .verticalScroll(rememberScrollState())
-        ) {
-            Column {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color.Black)
+            .verticalScroll(rememberScrollState())
+    ) {
+        Column {
 
 
             if (filme != null) {
@@ -57,8 +57,8 @@ fun DetailsScreen(filme: Filme?) {
                 )
             }
 
-            }
         }
-
     }
+
+}
 

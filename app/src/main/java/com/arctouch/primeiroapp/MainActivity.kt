@@ -50,8 +50,7 @@ class MainActivity : ComponentActivity() {
                             IconButton(onClick = { navController.navigate(PERFIL) }) {
                                 Icon(Icons.Default.Person, contentDescription = "Tela de perfil")
                             }
-                        }
-                        )
+                        })
                     }
 
                     if (rotaAtual != HOME) {
@@ -59,8 +58,7 @@ class MainActivity : ComponentActivity() {
                             IconButton(onClick = { navController.navigate(HOME) }) {
                                 Icon(Icons.Default.ArrowBack, contentDescription = "Back")
                             }
-                        }
-                        )
+                        })
                     }
 
 
