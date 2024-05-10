@@ -26,12 +26,11 @@ import coil.compose.AsyncImage
 import coil.imageLoader
 
 @Composable
-fun PerfilScreen(navController: NavHostController, context: Context) {
+fun PerfilScreen(navController: NavHostController) {
     var nome: String by rememberSaveable { mutableStateOf("") }
     var idade: String by rememberSaveable { mutableStateOf("") }
     var idadeSalva: String by rememberSaveable { mutableStateOf("-") }
     var nomesalva: String by rememberSaveable { mutableStateOf("-") }
-    val imageLoader = context.imageLoader
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -39,9 +38,9 @@ fun PerfilScreen(navController: NavHostController, context: Context) {
     )
     {
         AsyncImage(
-            model = "https://thumbs.dreamstime.com/b/%C3%ADcone-do-avatar-usu%C3%A1rio-bot%C3%A3o-s%C3%ADmbolo-perfil-liso-da-pessoa-vetor-131363829.jpg",
+            model = "https://cdn-icons-png.flaticon.com/512/4792/4792929.png",
             contentDescription = "Imagem de perfil",
-            modifier = Modifier.size(120.dp),
+            modifier = Modifier.size(150.dp),
         )
 
         Spacer(modifier = Modifier.height(16.dp))
