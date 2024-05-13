@@ -1,6 +1,7 @@
 package com.arctouch.primeiroapp
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -8,8 +9,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -51,8 +50,7 @@ class MainActivity : ComponentActivity() {
                             IconButton(onClick = { navController.navigate(PERFIL) }) {
                                 Icon(Icons.Default.Person, contentDescription = "Tela de perfil")
                             }
-                        }
-                        )
+                        })
                     }
 
                     if (rotaAtual != HOME) {
@@ -60,10 +58,8 @@ class MainActivity : ComponentActivity() {
                             IconButton(onClick = { navController.navigate(HOME) }) {
                                 Icon(Icons.Default.ArrowBack, contentDescription = "Back")
                             }
-                        }
-                        )
+                        })
                     }
-
 
 
                 }) {
@@ -76,9 +72,6 @@ class MainActivity : ComponentActivity() {
                     ) {
 
                         NavHost(navController = navController, startDestination = HOME) {
-                            composable(HOME) {
-                                PerfilScreen(navController = navController)
-                            }
                             composable(HOME) {
                                 Homescreen(navController = navController)
                             }

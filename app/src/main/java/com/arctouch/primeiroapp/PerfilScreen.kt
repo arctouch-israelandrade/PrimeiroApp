@@ -1,6 +1,6 @@
 package com.arctouch.primeiroapp
 
-import androidx.compose.foundation.Image
+import android.content.Context
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,15 +15,15 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import coil.compose.AsyncImage
+import coil.imageLoader
 
 @Composable
 fun PerfilScreen(navController: NavHostController) {
@@ -31,18 +31,15 @@ fun PerfilScreen(navController: NavHostController) {
     var idade: String by rememberSaveable { mutableStateOf("") }
     var idadeSalva: String by rememberSaveable { mutableStateOf("-") }
     var nomesalva: String by rememberSaveable { mutableStateOf("-") }
-
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
-    )
-    {
-
-        Image(
-            painter = painterResource(id = R.drawable.baseline_account_circle_24),
+    ) {
+        AsyncImage(
+            model = "https://cdn-icons-png.flaticon.com/512/4792/4792929.png",
             contentDescription = "Imagem de perfil",
-            modifier = Modifier.size(120.dp)
+            modifier = Modifier.size(150.dp),
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -59,8 +56,7 @@ fun PerfilScreen(navController: NavHostController) {
 
         Row(
             modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly
-        )
-        {
+        ) {
             Column {
 
                 TextField(value = nome, onValueChange = { nome = it }, label = {
@@ -71,8 +67,7 @@ fun PerfilScreen(navController: NavHostController) {
                 TextField(value = idade, onValueChange = { idade = it }, label = {
                     Text("Idade:")
 
-                }
-                )
+                })
 
 
             }
@@ -93,6 +88,7 @@ fun PerfilScreen(navController: NavHostController) {
 
         }
     }
+
 }
 
 
