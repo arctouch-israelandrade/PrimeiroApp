@@ -37,6 +37,7 @@ class MainActivity : ComponentActivity() {
     @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val sharedPref = activity.getPreferences(Context.MODE_PRIVATE)
         setContent {
             PrimeiroAppTheme {
 
@@ -88,7 +89,7 @@ class MainActivity : ComponentActivity() {
                             composable(
                                 route = PERFIL,
                             ) {
-                                PerfilScreen(navController = navController)
+                                PerfilScreen(navController = navController, context = this@MainActivity)
                             }
                         }
                     }

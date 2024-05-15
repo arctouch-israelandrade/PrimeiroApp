@@ -23,14 +23,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
-import coil.imageLoader
 
 @Composable
-fun PerfilScreen(navController: NavHostController) {
+fun PerfilScreen(navController: NavHostController, context: Context) {
     var nome: String by rememberSaveable { mutableStateOf("") }
-    var idade: String by rememberSaveable { mutableStateOf("") }
-    var idadeSalva: String by rememberSaveable { mutableStateOf("-") }
-    var nomesalva: String by rememberSaveable { mutableStateOf("-") }
+    val sharedPref = context.getSharedPreferences(
+        "PrimeiroAppSharedPreferences", Context.MODE_PRIVATE)
+    val idadeSharedPreferences = sharedPref.getString("idade", "-") ?: ""
+    val nomeSharedPreferences = sharedPref.getString("nome", "-") ?: ""
+    var idadeSalva: String by rememberSaveable { mutableStateOf(idadeSharedPreferences) }
+    var nomesalva: String by rememberSaveable { mutableStateOf(nomeSharedPreferences) }
+
+
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -59,12 +63,12 @@ fun PerfilScreen(navController: NavHostController) {
         ) {
             Column {
 
-                TextField(value = nome, onValueChange = { nome = it }, label = {
+                TextField(value = nomesalva, onValueChange = { nomesalva = it }, label = {
                     Text("Nome:")
                 })
 
 
-                TextField(value = idade, onValueChange = { idade = it }, label = {
+                TextField(value = idadeSalva, onValueChange = { idadeSalva = it }, label = {
                     Text("Idade:")
 
                 })
@@ -74,8 +78,10 @@ fun PerfilScreen(navController: NavHostController) {
         }
 
         Button(onClick = {
-            idadeSalva = idade
-            nomesalva = nome
+            val editor = sharedPref.edit()
+            editor.putString("nome", nomesalva)
+            editor.putString("idade", idadeSalva)
+            editor.apply()
         }) {
             Text("Salvar")
 
