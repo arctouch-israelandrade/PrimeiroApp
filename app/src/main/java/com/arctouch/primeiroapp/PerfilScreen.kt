@@ -24,13 +24,17 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 
+const val PRIMEIROAPPSHAREDPREFERNCS = "PrimeiroAppSharedPreferences"
+const val NOME = "nome"
+const val IDADE = "idade"
+
+
 @Composable
 fun PerfilScreen(navController: NavHostController, context: Context) {
-    var nome: String by rememberSaveable { mutableStateOf("") }
     val sharedPref = context.getSharedPreferences(
-        "PrimeiroAppSharedPreferences", Context.MODE_PRIVATE)
-    val idadeSharedPreferences = sharedPref.getString("idade", "-") ?: ""
-    val nomeSharedPreferences = sharedPref.getString("nome", "-") ?: ""
+        PRIMEIROAPPSHAREDPREFERNCS, Context.MODE_PRIVATE)
+    val idadeSharedPreferences = sharedPref.getString(IDADE, "-") ?: ""
+    val nomeSharedPreferences = sharedPref.getString(NOME, "-") ?: ""
     var idadeSalva: String by rememberSaveable { mutableStateOf(idadeSharedPreferences) }
     var nomesalva: String by rememberSaveable { mutableStateOf(nomeSharedPreferences) }
 
