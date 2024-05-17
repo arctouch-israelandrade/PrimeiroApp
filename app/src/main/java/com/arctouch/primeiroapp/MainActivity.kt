@@ -88,7 +88,10 @@ class MainActivity : ComponentActivity() {
                             composable(
                                 route = PERFIL,
                             ) {
-                                PerfilScreen(navController = navController, context = this@MainActivity)
+                                PerfilScreen(
+                                    navController = navController,
+                                    context = this@MainActivity
+                                )
                             }
                         }
                     }
