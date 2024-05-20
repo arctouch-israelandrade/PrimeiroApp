@@ -83,8 +83,8 @@ fun PerfilScreen(navController: NavHostController, context: Context) {
 
         Button(onClick = {
             val editor = sharedPref.edit()
-            editor.putString("nome", nomesalva)
-            editor.putString("idade", idadeSalva)
+            editor.putString(SHARED_PREFS_NOME, nomesalva)
+            editor.putString(SHARED_PREFS_IDADE, idadeSalva)
             editor.apply()
         }) {
             Text("Salvar")

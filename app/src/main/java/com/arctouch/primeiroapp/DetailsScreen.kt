@@ -1,4 +1,4 @@
-package com.arctouch.primeiroapp.ui.theme
+package com.arctouch.primeiroapp
 
 import android.os.Parcelable
 import androidx.compose.foundation.background
