@@ -1,7 +1,6 @@
 package com.arctouch.primeiroapp
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -24,7 +23,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.arctouch.primeiroapp.ui.theme.DetailsScreen
 import com.arctouch.primeiroapp.ui.theme.PrimeiroAppTheme
 
 const val PERFIL = "perfil"
@@ -88,7 +86,10 @@ class MainActivity : ComponentActivity() {
                             composable(
                                 route = PERFIL,
                             ) {
-                                PerfilScreen(navController = navController)
+                                PerfilScreen(
+                                    navController = navController,
+                                    context = this@MainActivity
+                                )
                             }
                         }
                     }

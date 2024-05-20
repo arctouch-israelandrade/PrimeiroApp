@@ -23,14 +23,22 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
-import coil.imageLoader
+
+const val PRIMEIRO_APP_SHARED_PREFERNCES = "PrimeiroAppSharedPreferences"
+const val SHARED_PREFS_NOME = "nome"
+const val SHARED_PREFS_IDADE = "idade"
+
 
 @Composable
-fun PerfilScreen(navController: NavHostController) {
-    var nome: String by rememberSaveable { mutableStateOf("") }
-    var idade: String by rememberSaveable { mutableStateOf("") }
-    var idadeSalva: String by rememberSaveable { mutableStateOf("-") }
-    var nomesalva: String by rememberSaveable { mutableStateOf("-") }
+fun PerfilScreen(navController: NavHostController, context: Context) {
+    val sharedPref = context.getSharedPreferences(
+        PRIMEIRO_APP_SHARED_PREFERNCES, Context.MODE_PRIVATE)
+    val idadeSharedPreferences = sharedPref.getString(SHARED_PREFS_IDADE, "-") ?: ""
+    val nomeSharedPreferences = sharedPref.getString(SHARED_PREFS_NOME, "-") ?: ""
+    var idadeSalva: String by rememberSaveable { mutableStateOf(idadeSharedPreferences) }
+    var nomesalva: String by rememberSaveable { mutableStateOf(nomeSharedPreferences) }
+
+
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -59,12 +67,12 @@ fun PerfilScreen(navController: NavHostController) {
         ) {
             Column {
 
-                TextField(value = nome, onValueChange = { nome = it }, label = {
+                TextField(value = nomesalva, onValueChange = { nomesalva = it }, label = {
                     Text("Nome:")
                 })
 
 
-                TextField(value = idade, onValueChange = { idade = it }, label = {
+                TextField(value = idadeSalva, onValueChange = { idadeSalva = it }, label = {
                     Text("Idade:")
 
                 })
@@ -74,8 +82,10 @@ fun PerfilScreen(navController: NavHostController) {
         }
 
         Button(onClick = {
-            idadeSalva = idade
-            nomesalva = nome
+            val editor = sharedPref.edit()
+            editor.putString(SHARED_PREFS_NOME, nomesalva)
+            editor.putString(SHARED_PREFS_IDADE, idadeSalva)
+            editor.apply()
         }) {
             Text("Salvar")
 
