@@ -25,7 +25,7 @@ fun DetailsScreen(filme: Filme?) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color.Black)
+            .background(color = Color.Gray)
             .verticalScroll(rememberScrollState())
             .padding(16.dp)
     ) {
