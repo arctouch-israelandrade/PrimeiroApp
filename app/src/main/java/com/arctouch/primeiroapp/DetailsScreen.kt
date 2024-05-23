@@ -37,7 +37,7 @@ fun DetailsScreen(filme: Filme?) {
                 Text(
                     text = filme.titulo,
                     fontSize = 30.sp,
-                    color = Color.White
+                    color = Color.Black
 
                 )
 
@@ -46,7 +46,7 @@ fun DetailsScreen(filme: Filme?) {
                 Text(
                     text = filme.descricao,
                     fontSize = 20.sp,
-                    color = Color.White
+                    color = Color.Black
                 )
 
                 Spacer(modifier = Modifier.height(16.dp))
@@ -54,7 +54,7 @@ fun DetailsScreen(filme: Filme?) {
                 Text(
                     text = filme.elenco,
                     fontSize = 20.sp,
-                    color = Color.White
+                    color = Color.Black
 
                 )
             }
