@@ -22,9 +22,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
+import androidx.activity.viewModels
 
 const val PRIMEIRO_APP_SHARED_PREFERNCES = "PrimeiroAppSharedPreferences"
 const val SHARED_PREFS_NOME = "nome"
@@ -32,11 +34,11 @@ const val SHARED_PREFS_IDADE = "idade"
 
 
 @Composable
-fun PerfilScreen(navController: NavHostController, context: Context) {
-    val viewModel: PerfilViewModel = PerfilViewModel(context)
-    val perfilDados = viewModel.buscarDados()
-    var idadeSalva: String by rememberSaveable { mutableStateOf(perfilDados.idade) }
-    var nomesalva: String by rememberSaveable { mutableStateOf(perfilDados.nome) }
+fun PerfilScreen(navController: NavHostController, context: Context, perfilViewModel: PerfilViewModel) {
+
+        val perfilDados = perfilViewModel.buscarDados()
+            var idadeSalva: String by rememberSaveable { mutableStateOf(perfilDados.idade) }
+            var nomesalva: String by rememberSaveable { mutableStateOf(perfilDados.nome) }
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -85,7 +87,7 @@ fun PerfilScreen(navController: NavHostController, context: Context) {
                 idadeSalva,
                 nomesalva
             )
-            viewModel.gravarDados(perfilDadosParaGravacao)
+            perfilViewModel.gravarDados(perfilDadosParaGravacao)
 
         }) {
             Text("Salvar")
