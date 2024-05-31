@@ -32,9 +32,8 @@ const val SHARED_PREFS_IDADE = "idade"
 
 
 @Composable
-fun PerfilScreen(navController: NavHostController, context: Context) {
-    val viewModel: PerfilViewModel = PerfilViewModel(context)
-    val perfilDados = viewModel.buscarDados()
+fun PerfilScreen(navController: NavHostController, context: Context, perfilViewModel: PerfilViewModel) {
+    val perfilDados = perfilViewModel.buscarDados()
     var idadeSalva: String by rememberSaveable { mutableStateOf(perfilDados.idade) }
     var nomesalva: String by rememberSaveable { mutableStateOf(perfilDados.nome) }
 
@@ -85,7 +84,7 @@ fun PerfilScreen(navController: NavHostController, context: Context) {
                 idadeSalva,
                 nomesalva
             )
-            viewModel.gravarDados(perfilDadosParaGravacao)
+            perfilViewModel.gravarDados(perfilDadosParaGravacao)
 
         }) {
             Text("Salvar")
