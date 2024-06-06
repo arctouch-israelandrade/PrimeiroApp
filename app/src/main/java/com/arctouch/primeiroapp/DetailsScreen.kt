@@ -1,6 +1,5 @@
 package com.arctouch.primeiroapp
 
-import android.os.Parcelable
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,12 +19,10 @@ import androidx.compose.ui.text.style.TextIndent
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.arctouch.primeiroapp.Filme
 
 
 @Composable
 fun DetailsScreen(filme: Filme?) {
-
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -34,8 +31,6 @@ fun DetailsScreen(filme: Filme?) {
             .padding(16.dp)
     ) {
         Column {
-
-
             if (filme != null) {
 
                 Text(
@@ -55,11 +50,21 @@ fun DetailsScreen(filme: Filme?) {
 
                 Spacer(modifier = Modifier.height(16.dp))
 
+                val bullet = "\u2022"
+                val messages = filme.elenco
+                val paragraphStyle = ParagraphStyle(textIndent = TextIndent(restLine = 12.sp))
                 Text(
-                    text = filme.elenco,
-                    fontSize = 20.sp,
-                    color = Color.Black
-
+                    text = buildAnnotatedString {
+                        messages.forEach {
+                            withStyle(style = paragraphStyle) {
+                                append(bullet)
+                                append("\t\t")
+                                append(it)
+                            }
+                        }
+                    },
+                    color = Color.Black,
+                    fontSize = 20.sp
                 )
             }
 
@@ -67,4 +72,3 @@ fun DetailsScreen(filme: Filme?) {
     }
 
 }
-
