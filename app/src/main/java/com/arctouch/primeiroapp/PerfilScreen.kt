@@ -25,6 +25,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
+import com.arctouch.primeiroapp.ui.theme.PerfilDados
 
 const val PRIMEIRO_APP_SHARED_PREFERNCES = "PrimeiroAppSharedPreferences"
 const val SHARED_PREFS_NOME = "nome"
@@ -84,7 +85,7 @@ fun PerfilScreen(
         }
 
         Button(onClick = {
-            val perfilDadosParaGravacao = PerfilViewModel.PerfilDados(
+            val perfilDadosParaGravacao = PerfilDados(
                 idadeSalva,
                 nomesalva
             )
