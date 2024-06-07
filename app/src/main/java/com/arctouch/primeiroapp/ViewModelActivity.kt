@@ -23,6 +23,7 @@ class PerfilViewModel() : ViewModel() {
         editor.apply()
 
     }
+
     private fun sharedPreferences(context: Context): SharedPreferences {
         return context.getSharedPreferences(
             PRIMEIRO_APP_SHARED_PREFERNCES, Context.MODE_PRIVATE
