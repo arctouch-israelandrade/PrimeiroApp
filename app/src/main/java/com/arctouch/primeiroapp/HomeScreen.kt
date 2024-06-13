@@ -21,6 +21,9 @@ data class Filme(
 
 @Composable
 fun Homescreen(navController: NavHostController) {
+
+    val emojiCamera = "\uD83C\uDFA5"
+
     val filmes = listOf(
 
         Filme(
