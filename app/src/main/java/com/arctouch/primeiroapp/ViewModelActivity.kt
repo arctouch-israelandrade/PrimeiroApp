@@ -11,7 +11,7 @@ class PerfilViewModel() : ViewModel() {
         val sharedPref = sharedPreferences(context)
         val idadeSharedPreferences = sharedPref.getString(SHARED_PREFS_IDADE, "-") ?: ""
         val nomeSharedPreferences = sharedPref.getString(SHARED_PREFS_NOME, "-") ?: ""
-        return PerfilDados (idadeSharedPreferences, nomeSharedPreferences)
+        return PerfilDados(idadeSharedPreferences, nomeSharedPreferences)
     }
 
     fun gravarDados(context: Context, perfilDados: PerfilDados) {
@@ -24,7 +24,7 @@ class PerfilViewModel() : ViewModel() {
     }
 
     private fun sharedPreferences(context: Context): SharedPreferences {
-         return context.getSharedPreferences(
+        return context.getSharedPreferences(
             PRIMEIRO_APP_SHARED_PREFERNCES, Context.MODE_PRIVATE
         )
     }
