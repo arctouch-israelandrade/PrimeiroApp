@@ -50,25 +50,30 @@ fun DetailsScreen(filme: Filme?) {
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                val bullet = "\u2022"
-                val messages = filme.elenco
-                val paragraphStyle = ParagraphStyle(textIndent = TextIndent(restLine = 12.sp))
-                Text(
-                    text = buildAnnotatedString {
-                        messages.forEach {
-                            withStyle(style = paragraphStyle) {
-                                append(bullet)
-                                append("\t\t")
-                                append(it)
-                            }
-                        }
-                    },
-                    color = Color.Black,
-                    fontSize = 20.sp
-                )
+                adicionaBullet(filme)
             }
 
         }
     }
 
+}
+
+@Composable
+private fun adicionaBullet(filme: Filme) {
+    val bullet = "\u2022"
+    val messages = filme.elenco
+    val paragraphStyle = ParagraphStyle(textIndent = TextIndent(restLine = 12.sp))
+    Text(
+        text = buildAnnotatedString {
+            messages.forEach {
+                withStyle(style = paragraphStyle) {
+                    append(bullet)
+                    append("\t\t")
+                    append(it)
+                }
+            }
+        },
+        color = Color.Black,
+        fontSize = 20.sp
+    )
 }
