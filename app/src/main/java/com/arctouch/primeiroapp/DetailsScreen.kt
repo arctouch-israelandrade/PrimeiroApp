@@ -51,6 +51,7 @@ fun DetailsScreen(filme: Filme?) {
                 Spacer(modifier = Modifier.height(16.dp))
 
                 adicionaBullet(filme)
+
             }
 
         }
