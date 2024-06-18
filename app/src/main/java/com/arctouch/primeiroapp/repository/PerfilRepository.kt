@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class PerfilRepository @Inject constructor(
     @ApplicationContext context: Context) {
-    val sharedPref = context.getSharedPreferences(
+    private val sharedPref = context.getSharedPreferences(
         PRIMEIRO_APP_SHARED_PREFERNCES, Context.MODE_PRIVATE
     )
 
