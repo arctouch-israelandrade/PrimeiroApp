@@ -24,7 +24,7 @@ class PerfilViewModel() : ViewModel() {
     }
 
     private fun sharedPreferences(context: Context): SharedPreferences {
-         return context.getSharedPreferences(
+        return context.getSharedPreferences(
             PRIMEIRO_APP_SHARED_PREFERNCES, Context.MODE_PRIVATE
         )
     }
