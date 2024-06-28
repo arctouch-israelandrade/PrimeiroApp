@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -30,8 +31,11 @@ const val HOME = "home"
 const val DETALHES = "detalhes"
 const val FILMES = "filme"
 
-@OptIn(ExperimentalMaterial3Api::class)
+
 class MainActivity : ComponentActivity() {
+    val viewModel: PerfilViewModel by viewModels()
+
+    @OptIn(ExperimentalMaterial3Api::class)
     @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,7 +92,8 @@ class MainActivity : ComponentActivity() {
                             ) {
                                 PerfilScreen(
                                     navController = navController,
-                                    context = this@MainActivity
+                                    context = this@MainActivity,
+                                    viewModel
                                 )
                             }
                         }

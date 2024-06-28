@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
+import com.arctouch.primeiroapp.ui.theme.PerfilDados
 
 const val PRIMEIRO_APP_SHARED_PREFERNCES = "PrimeiroAppSharedPreferences"
 const val SHARED_PREFS_NOME = "nome"
@@ -30,14 +31,14 @@ const val SHARED_PREFS_IDADE = "idade"
 
 
 @Composable
-fun PerfilScreen(navController: NavHostController, context: Context) {
-    val sharedPref = context.getSharedPreferences(
-        PRIMEIRO_APP_SHARED_PREFERNCES, Context.MODE_PRIVATE)
-    val idadeSharedPreferences = sharedPref.getString(SHARED_PREFS_IDADE, "-") ?: ""
-    val nomeSharedPreferences = sharedPref.getString(SHARED_PREFS_NOME, "-") ?: ""
-    var idadeSalva: String by rememberSaveable { mutableStateOf(idadeSharedPreferences) }
-    var nomesalva: String by rememberSaveable { mutableStateOf(nomeSharedPreferences) }
-
+fun PerfilScreen(
+    navController: NavHostController,
+    context: Context,
+    perfilViewModel: PerfilViewModel,
+) {
+    val perfilDados = perfilViewModel.buscarDados(context)
+    var idadeSalva: String by rememberSaveable { mutableStateOf(perfilDados.idade) }
+    var nomesalva: String by rememberSaveable { mutableStateOf(perfilDados.nome) }
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -82,10 +83,12 @@ fun PerfilScreen(navController: NavHostController, context: Context) {
         }
 
         Button(onClick = {
-            val editor = sharedPref.edit()
-            editor.putString(SHARED_PREFS_NOME, nomesalva)
-            editor.putString(SHARED_PREFS_IDADE, idadeSalva)
-            editor.apply()
+            val perfilDadosParaGravacao = PerfilDados(
+                idadeSalva,
+                nomesalva
+            )
+            perfilViewModel.gravarDados(context, perfilDadosParaGravacao)
+
         }) {
             Text("Salvar")
 
