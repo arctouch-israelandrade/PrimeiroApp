@@ -1,6 +1,5 @@
 package com.arctouch.primeiroapp
 import androidx.test.core.app.ApplicationProvider
-import com.arctouch.primeiroapp.ui.theme.PerfilDados
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith

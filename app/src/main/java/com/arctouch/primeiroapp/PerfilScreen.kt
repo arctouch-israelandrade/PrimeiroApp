@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
-import com.arctouch.primeiroapp.ui.theme.PerfilDados
+import com.arctouch.primeiroapp.repository.PerfilData
 
 const val PRIMEIRO_APP_SHARED_PREFERNCES = "PrimeiroAppSharedPreferences"
 const val SHARED_PREFS_NOME = "nome"
@@ -36,7 +36,7 @@ fun PerfilScreen(
     context: Context,
     perfilViewModel: PerfilViewModel,
 ) {
-    val perfilDados = perfilViewModel.buscarDados(context)
+    val perfilDados = perfilViewModel.buscarDados()
     var idadeSalva: String by rememberSaveable { mutableStateOf(perfilDados.idade) }
     var nomesalva: String by rememberSaveable { mutableStateOf(perfilDados.nome) }
 
@@ -83,11 +83,11 @@ fun PerfilScreen(
         }
 
         Button(onClick = {
-            val perfilDadosParaGravacao = PerfilDados(
+            val perfilDadosParaGravacao = PerfilData(
                 idadeSalva,
                 nomesalva
             )
-            perfilViewModel.gravarDados(context, perfilDadosParaGravacao)
+            perfilViewModel.gravarDados(perfilDadosParaGravacao)
 
         }) {
             Text("Salvar")
