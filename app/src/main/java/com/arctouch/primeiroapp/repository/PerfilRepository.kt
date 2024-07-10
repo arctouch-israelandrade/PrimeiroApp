@@ -20,10 +20,10 @@ class PerfilRepository @Inject constructor(
     }
 
 
-    fun gravarDados(perfilDados: PerfilData) {
+    fun gravarDados(perfilData: PerfilData) {
         val editor = sharedPref.edit()
-        editor.putString(SHARED_PREFS_NOME, perfilDados.nome)
-        editor.putString(SHARED_PREFS_IDADE, perfilDados.idade)
+        editor.putString(SHARED_PREFS_NOME, perfilData.nome)
+        editor.putString(SHARED_PREFS_IDADE, perfilData.idade)
         editor.apply()
 
     }
