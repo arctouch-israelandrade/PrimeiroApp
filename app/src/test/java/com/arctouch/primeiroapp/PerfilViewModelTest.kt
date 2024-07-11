@@ -10,10 +10,7 @@ import io.mockk.runs
 import io.mockk.verifySequence
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
 
-@RunWith(RobolectricTestRunner::class)
 class PerfilViewModelTest {
     val repositorio = mockk<PerfilRepository>()
     val perfilViewModel: PerfilViewModel = PerfilViewModel(repositorio)
