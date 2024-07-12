@@ -1,25 +1,37 @@
 package com.arctouch.primeiroapp
-import androidx.test.core.app.ApplicationProvider
+
+import com.arctouch.primeiroapp.repository.PerfilData
+import com.arctouch.primeiroapp.repository.PerfilRepository
+import io.mockk.confirmVerified
+import io.mockk.every
+import io.mockk.just
+import io.mockk.mockk
+import io.mockk.runs
+import io.mockk.verifySequence
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.robolectric.RobolectricTestRunner
 
-@RunWith(RobolectricTestRunner::class)
-class PerfilViewModelTest{
-    val perfilViewModel: PerfilViewModel = PerfilViewModel()
+class PerfilViewModelTest {
+    val repositorio = mockk<PerfilRepository>()
+    val perfilViewModel: PerfilViewModel = PerfilViewModel(repositorio)
+
     @Test
-    fun test_buscarDados(){
-        val resultado = perfilViewModel.buscarDados(ApplicationProvider.getApplicationContext())
-        assertEquals(PerfilDados("-", "-"), resultado)
+    fun test_buscarDados() {
+        val perfildataesperado = PerfilData("-", "-")
+        every { repositorio.buscarDados() } returns perfildataesperado
+        val resultado = perfilViewModel.buscarDados()
+        assertEquals(perfildataesperado, resultado)
+        verifySequence { repositorio.buscarDados() }
+        confirmVerified(repositorio)
     }
 
     @Test
-    fun test_gravarDados(){
-        val perfilDados: PerfilDados = PerfilDados("17", "israel")
-        perfilViewModel.gravarDados(ApplicationProvider.getApplicationContext(), perfilDados)
-        val resultado =perfilViewModel.buscarDados(ApplicationProvider.getApplicationContext())
-        assertEquals(perfilDados, resultado)
+    fun test_gravarDados() {
+        val perfilData: PerfilData = PerfilData("17", "israel")
+        every { repositorio.gravarDados(perfilData) } just runs
+        perfilViewModel.gravarDados(perfilData)
+        verifySequence { repositorio.gravarDados(perfilData) }
+        confirmVerified(repositorio)
     }
 
 }
