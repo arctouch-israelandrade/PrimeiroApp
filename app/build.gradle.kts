@@ -81,7 +81,7 @@ dependencies {
     implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
     ksp("com.squareup.moshi:moshi-kotlin-codegen:1.15.1")
     testImplementation("junit:junit:4.13.2")
-    testImplementation("io.mockk:mockk-android:1.13.11")
+    testImplementation("io.mockk:mockk:1.13.11")
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.robolectric:robolectric:4.12.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
