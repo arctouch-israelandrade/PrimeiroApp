@@ -10,6 +10,6 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET(value = "filmes")
-    fun buscarFilmes(@Query("key") apiKey: String): Call<RespostaApi>
+    suspend fun buscarFilmes(@Query("key") apiKey: String): Response<RespostaApi>
 
 }
