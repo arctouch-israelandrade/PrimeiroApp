@@ -17,13 +17,14 @@ class PrimeiroAppApplication : Application() {
         val apiService = BuilderRetrofit().retrofit.create(ApiService::class.java)
         val applicationScope = MainScope()
         applicationScope.launch {
-            val result = apiService.buscarFilmes("AIzaSyCt20TqhenbhGMoRtL1levbShsLCN44kX4")
+            val result = apiService.buscarFilmes(CHAVEAPI)
             if (result.isSuccessful) {
                 val filmes = result.body()
                 Log.d("israel", filmes.toString())
             } else {
                 Log.d("israel", result.message())
             }
+
         }
 
 
