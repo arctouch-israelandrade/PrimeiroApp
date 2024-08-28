@@ -5,7 +5,8 @@ import com.squareup.moshi.Moshi
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-const val CHAVEAPI = "AIzaSyCt20TqhenbhGMoRtL1levbShsLCN44kX4"
+const val CHAVE_API = "AIzaSyCt20TqhenbhGMoRtL1levbShsLCN44kX4"
+
 class BuilderRetrofit {
 
     private val moshi = Moshi.Builder()
