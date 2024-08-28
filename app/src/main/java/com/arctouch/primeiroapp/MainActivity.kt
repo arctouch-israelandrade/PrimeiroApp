@@ -25,13 +25,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.arctouch.primeiroapp.ui.theme.PrimeiroAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
 const val PERFIL = "perfil"
 const val HOME = "home"
 const val DETALHES = "detalhes"
 const val FILMES = "filme"
 
-
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     val viewModel: PerfilViewModel by viewModels()
 
