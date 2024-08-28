@@ -17,7 +17,7 @@ class PrimeiroAppApplication : Application() {
         val apiService = BuilderRetrofit().retrofit.create(ApiService::class.java)
         val applicationScope = MainScope()
         applicationScope.launch {
-            val result = apiService.buscarFilmes(CHAVEAPI)
+            val result = apiService.buscarFilmes(CHAVE_API)
             if (result.isSuccessful) {
                 val filmes = result.body()
                 Log.d("israel", filmes.toString())
