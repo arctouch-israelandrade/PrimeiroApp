@@ -13,7 +13,7 @@ class BuilderRetrofit {
         .add(StringAdapter())
         .build()
 
-     val retrofit = Retrofit.Builder()
+    val retrofit = Retrofit.Builder()
         .baseUrl("https://firestore.googleapis.com/v1/projects/api-filmes-9c2ce/databases/(default)/documents/")
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
