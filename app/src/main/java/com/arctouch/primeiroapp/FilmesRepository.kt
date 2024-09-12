@@ -2,7 +2,7 @@ package com.arctouch.primeiroapp
 
 import javax.inject.Inject
 
-class FilmesRepository @Inject constructor () {
+class FilmesRepository @Inject constructor() {
 
     fun buscarFilmes(): List<Filme> {
         val emojiCamera = "\uD83C\uDFA5"
