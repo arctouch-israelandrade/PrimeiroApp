@@ -34,7 +34,8 @@ const val FILMES = "filme"
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    val viewModel: PerfilViewModel by viewModels()
+    val perfilViewModel: PerfilViewModel by viewModels()
+    val filmesViewModels: FilmesViewModel by viewModels()
 
     @OptIn(ExperimentalMaterial3Api::class)
     @SuppressLint("NewApi")
@@ -76,7 +77,10 @@ class MainActivity : ComponentActivity() {
 
                         NavHost(navController = navController, startDestination = HOME) {
                             composable(HOME) {
-                                Homescreen(navController = navController)
+                                Homescreen(
+                                    navController = navController,
+                                    filmesViewModels
+                                )
                             }
                             composable(
                                 route = DETALHES,
@@ -94,7 +98,7 @@ class MainActivity : ComponentActivity() {
                                 PerfilScreen(
                                     navController = navController,
                                     context = this@MainActivity,
-                                    viewModel
+                                    perfilViewModel
                                 )
                             }
                         }

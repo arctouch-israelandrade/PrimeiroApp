@@ -8,7 +8,8 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class PerfilRepository @Inject constructor(
-    @ApplicationContext context: Context) {
+    @ApplicationContext context: Context
+) {
     private val sharedPref = context.getSharedPreferences(
         PRIMEIRO_APP_SHARED_PREFERNCES, Context.MODE_PRIVATE
     )
