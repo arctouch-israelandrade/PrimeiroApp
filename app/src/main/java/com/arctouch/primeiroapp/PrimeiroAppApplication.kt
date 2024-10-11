@@ -2,13 +2,9 @@ package com.arctouch.primeiroapp
 
 import android.app.Application
 import android.util.Log
-import com.arctouch.primeiroapp.models.RespostaApi
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 @HiltAndroidApp
 class PrimeiroAppApplication : Application() {
