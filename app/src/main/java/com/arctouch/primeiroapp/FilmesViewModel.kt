@@ -12,7 +12,6 @@ import javax.inject.Inject
 class FilmesViewModel @Inject constructor(val filmes: FilmesRepository) : ViewModel() {
     fun buscarFilmes(): List<Filme> =
         runBlocking {
-            delay(12000)
             return@runBlocking filmes.buscarFilmes()
         }
 }
