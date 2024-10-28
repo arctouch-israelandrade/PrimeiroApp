@@ -37,6 +37,7 @@ class MainActivity : ComponentActivity() {
     val perfilViewModel: PerfilViewModel by viewModels()
     val filmesViewModels: FilmesViewModel by viewModels()
 
+
     @OptIn(ExperimentalMaterial3Api::class)
     @SuppressLint("NewApi")
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,6 +1,5 @@
 package com.arctouch.primeiroapp
 
-import android.content.Context
 import android.os.Parcelable
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
@@ -8,10 +7,13 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import com.arctouch.primeiroapp.repository.UiState
+import com.arctouch.primeiroapp.repository.UiState.FilmesUiState
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -22,27 +24,33 @@ data class Filme(
 ) : Parcelable
 
 @Composable
-fun Homescreen(
-    navController: NavHostController,
-    filmesViewModel: FilmesViewModel
-) {
+fun Homescreen(navController: NavHostController, viewModel: FilmesViewModel) {
 
-    val filmes = filmesViewModel.buscarFilmes()
+    viewModel.buscarFilmes()
+        val state by viewModel.uiState.collectAsState()
+        if (state is UiState.FilmesUiState.Carregado) {
+        val filmes = (state as FilmesUiState.Carregado).filmes
 
-    LazyColumn {
-        items(filmes) { filme ->
-            Text(text = filme.titulo, modifier = Modifier
-                .clickable {
-                    navController.currentBackStackEntry?.savedStateHandle?.set(
-                        "filme", filme
-                    )
-                    navController.navigate(DETALHES)
-                }
-                .padding(16.dp))
+
+        LazyColumn {
+            items(filmes) { filme ->
+                Text(
+                    text = filme.titulo,
+                    modifier = Modifier
+                        .clickable {
+                            navController.currentBackStackEntry?.savedStateHandle?.set(
+                                "filme", filme
+                            )
+                            navController.navigate(DETALHES)
+                        }
+                        .padding(16.dp))
+            }
+
         }
 
 
     }
+
 }
 
 

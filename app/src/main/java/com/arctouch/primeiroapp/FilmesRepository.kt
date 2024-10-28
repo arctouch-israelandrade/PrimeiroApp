@@ -4,9 +4,10 @@ import javax.inject.Inject
 
 class FilmesRepository @Inject constructor() {
 
-    val apiService = BuilderRetrofit().retrofit.create(ApiService::class.java)
 
-    suspend fun  buscarFilmes(): List<Filme> {
+    private val apiService = BuilderRetrofit().retrofit.create(ApiService::class.java)
+
+    suspend fun buscarFilmes(): List<Filme> {
         apiService.buscarFilmes(CHAVE_API)
         val emojiCamera = "\uD83C\uDFA5"
 
