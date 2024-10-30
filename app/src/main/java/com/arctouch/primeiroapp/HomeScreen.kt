@@ -25,25 +25,22 @@ data class Filme(
 
 @Composable
 fun Homescreen(navController: NavHostController, viewModel: FilmesViewModel) {
-
     viewModel.buscarFilmes()
-        val state by viewModel.uiState.collectAsState()
-        if (state is UiState.FilmesUiState.Carregado) {
+    val state by viewModel.uiState.collectAsState()
+    if (state is UiState.FilmesUiState.Carregado) {
         val filmes = (state as FilmesUiState.Carregado).filmes
 
 
         LazyColumn {
             items(filmes) { filme ->
-                Text(
-                    text = filme.titulo,
-                    modifier = Modifier
-                        .clickable {
-                            navController.currentBackStackEntry?.savedStateHandle?.set(
-                                "filme", filme
-                            )
-                            navController.navigate(DETALHES)
-                        }
-                        .padding(16.dp))
+                Text(text = filme.titulo, modifier = Modifier
+                    .clickable {
+                        navController.currentBackStackEntry?.savedStateHandle?.set(
+                            "filme", filme
+                        )
+                        navController.navigate(DETALHES)
+                    }
+                    .padding(16.dp))
             }
 
         }
