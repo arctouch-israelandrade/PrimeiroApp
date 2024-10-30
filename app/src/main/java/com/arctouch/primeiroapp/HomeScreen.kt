@@ -25,6 +25,7 @@ data class Filme(
 
 @Composable
 fun Homescreen(navController: NavHostController, viewModel: FilmesViewModel) {
+
     viewModel.buscarFilmes()
     val state by viewModel.uiState.collectAsState()
     if (state is UiState.FilmesUiState.Carregado) {
