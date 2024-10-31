@@ -12,7 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.arctouch.primeiroapp.repository.UiState
+import com.arctouch.primeiroapp.repository.FilmesUiState
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -28,8 +28,8 @@ fun Homescreen(navController: NavHostController, viewModel: FilmesViewModel) {
     val uiState by viewModel.uiState.collectAsState()
 
     when (uiState) {
-        is UiState.FilmesUiState.Carregado -> {
-            val filmes = (uiState as UiState.FilmesUiState.Carregado).filmes
+        is FilmesUiState.Carregado -> {
+            val filmes = (uiState as FilmesUiState.Carregado).filmes
 
             LazyColumn {
                 items(filmes) { filme ->
@@ -47,7 +47,7 @@ fun Homescreen(navController: NavHostController, viewModel: FilmesViewModel) {
 
         }
 
-        is UiState.FilmesUiState.Carregando -> {
+        is FilmesUiState.Carregando -> {
             Text(text = "Carregando...", modifier = Modifier.padding(16.dp))
         }
 
