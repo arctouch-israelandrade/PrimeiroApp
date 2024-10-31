@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.arctouch.primeiroapp.repository.UiState
-import com.arctouch.primeiroapp.repository.UiState.FilmesUiState
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -25,28 +24,36 @@ data class Filme(
 
 @Composable
 fun Homescreen(navController: NavHostController, viewModel: FilmesViewModel) {
-
     viewModel.buscarFilmes()
-    val state by viewModel.uiState.collectAsState()
-    if (state is UiState.FilmesUiState.Carregado) {
-        val filmes = (state as FilmesUiState.Carregado).filmes
+    val uiState by viewModel.uiState.collectAsState()
 
+    when (uiState) {
+        is UiState.FilmesUiState.Carregado -> {
+            val filmes = (uiState as UiState.FilmesUiState.Carregado).filmes
 
-        LazyColumn {
-            items(filmes) { filme ->
-                Text(text = filme.titulo, modifier = Modifier
-                    .clickable {
-                        navController.currentBackStackEntry?.savedStateHandle?.set(
-                            "filme", filme
-                        )
-                        navController.navigate(DETALHES)
-                    }
-                    .padding(16.dp))
+            LazyColumn {
+                items(filmes) { filme ->
+                    Text(text = filme.titulo, modifier = Modifier
+                        .clickable {
+                            navController.currentBackStackEntry?.savedStateHandle?.set(
+                                "filme", filme
+                            )
+                            navController.navigate(DETALHES)
+                        }
+                        .padding(16.dp))
+                }
+
             }
 
         }
 
+        is UiState.FilmesUiState.Carregando -> {
+            Text(text = "Carregando...", modifier = Modifier.padding(16.dp))
+        }
 
+        else -> {
+            println("Erro...")
+        }
     }
 
 }
