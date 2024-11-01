@@ -28,7 +28,34 @@ fun Homescreen(navController: NavHostController, viewModel: FilmesViewModel) {
     viewModel.buscarFilmes()
     val uiState by viewModel.uiState.collectAsState()
 
+    when (uiState) {
+        is FilmesUiState.Carregado -> {
+            val filmes = (uiState as FilmesUiState.Carregado).filmes
 
+            LazyColumn {
+                items(filmes) { filme ->
+                    Text(text = filme.titulo, modifier = Modifier
+                        .clickable {
+                            navController.currentBackStackEntry?.savedStateHandle?.set(
+                                "filme", filme
+                            )
+                            navController.navigate(DETALHES)
+                        }
+                        .padding(16.dp))
+                }
+
+            }
+
+        }
+
+        is FilmesUiState.Carregando -> {
+            Text(text = "Carregando...", modifier = Modifier.padding(16.dp))
+        }
+
+        else -> {
+            println("Erro")
+        }
+    }
 
 }
 
