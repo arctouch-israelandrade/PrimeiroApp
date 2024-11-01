@@ -20,7 +20,7 @@ class FilmesViewModel @Inject constructor(
     fun buscarFilmes(){
         viewModelScope.launch {
             val listaDeFilme = filmes.buscarFilmes()
-            _uiState.value = FilmesUiState.Carregando
+            _uiState.value = FilmesUiState.Carregado(listaDeFilme)
         }
     }
 
