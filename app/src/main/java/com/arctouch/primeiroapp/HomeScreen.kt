@@ -27,6 +27,7 @@ fun Homescreen(navController: NavHostController, viewModel: FilmesViewModel) {
     viewModel.buscarFilmes()
     val uiState by viewModel.uiState.collectAsState()
 
+
     when (uiState) {
         is FilmesUiState.Carregado -> {
             val filmes = (uiState as FilmesUiState.Carregado).filmes
@@ -57,6 +58,7 @@ fun Homescreen(navController: NavHostController, viewModel: FilmesViewModel) {
     }
 
 }
+
 
 
 
