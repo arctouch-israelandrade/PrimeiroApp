@@ -5,8 +5,7 @@ import javax.inject.Inject
 
 class FilmesRepository @Inject constructor() {
 
-
-     val apiService = BuilderRetrofit().retrofit.create(ApiService::class.java)
+    val apiService = BuilderRetrofit().retrofit.create(ApiService::class.java)
 
     suspend fun buscarFilmes(): List<Filme> {
 
@@ -22,8 +21,6 @@ class FilmesRepository @Inject constructor() {
 
         } else {
             return listOf()
-
         }
     }
-
 }

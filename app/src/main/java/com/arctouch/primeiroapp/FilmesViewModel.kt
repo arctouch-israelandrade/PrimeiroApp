@@ -11,6 +11,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FilmesViewModel @Inject constructor(
+
     private val filmes: FilmesRepository,
     ) : ViewModel() {
 
@@ -23,5 +24,4 @@ class FilmesViewModel @Inject constructor(
             _uiState.value = FilmesUiState.Carregado(listaDeFilme)
         }
     }
-
 }
