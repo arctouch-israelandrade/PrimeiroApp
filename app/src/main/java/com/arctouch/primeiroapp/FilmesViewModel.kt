@@ -2,8 +2,8 @@ package com.arctouch.primeiroapp
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.arctouch.primeiroapp.repository.FilmesUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -13,13 +13,14 @@ import javax.inject.Inject
 class FilmesViewModel @Inject constructor(
 
     private val filmes: FilmesRepository,
-    ) : ViewModel() {
+) : ViewModel() {
 
-   private val _uiState = MutableStateFlow<FilmesUiState>(FilmesUiState.Carregado(listOf()))
+    private val _uiState = MutableStateFlow<FilmesUiState>(FilmesUiState.Carregando)
     val uiState = _uiState.asStateFlow()
 
-    fun buscarFilmes(){
+    fun buscarFilmes() {
         viewModelScope.launch {
+            delay(12000)
             val listaDeFilme = filmes.buscarFilmes()
             _uiState.value = FilmesUiState.Carregado(listaDeFilme)
         }

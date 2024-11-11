@@ -1,6 +1,5 @@
 package com.arctouch.primeiroapp
 
-import com.arctouch.primeiroapp.models.Filme
 import javax.inject.Inject
 
 class FilmesRepository @Inject constructor() {
@@ -16,7 +15,7 @@ class FilmesRepository @Inject constructor() {
             val filmes = result.body() ?: return listOf()
 
             return filmes.documentos.map {
-                it.filme
+                Filme(it.filme.titulo, it.filme.descricao, it.filme.elenco)
             }
 
         } else {

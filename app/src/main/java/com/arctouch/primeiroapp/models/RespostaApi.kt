@@ -13,11 +13,11 @@ data class RespostaApi(
 
 @JsonClass(generateAdapter = true)
 data class Documento(
-    @Json(name = "fields") val filme: Filme,
+    @Json(name = "fields") val filme: FilmeDto,
 )
 
 @JsonClass(generateAdapter = true)
-data class Filme(
+data class FilmeDto(
     @FirestoreField
     val titulo: String,
     @FirestoreField
