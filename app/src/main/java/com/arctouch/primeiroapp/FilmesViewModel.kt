@@ -20,7 +20,7 @@ class FilmesViewModel @Inject constructor(
 
     fun buscarFilmes() {
         viewModelScope.launch {
-            delay(12000)
+            delay(2000)
             val listaDeFilme = filmes.buscarFilmes()
             _uiState.value = FilmesUiState.Carregado(listaDeFilme)
         }

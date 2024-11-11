@@ -62,15 +62,21 @@ fun DetailsScreen(filme: Filme?) {
 @Composable
 private fun AdicionaBullet(filme: Filme) {
     val bullet = "\u2022"
-    val messages = filme.elenco
+    val elencoString = filme.elenco
+    val messages = elencoString.split("\\n")
+
+    val filteredMessages = messages
+        .map { it.trim() }
+        .filter { it.isNotEmpty() }
+
     val paragraphStyle = ParagraphStyle(textIndent = TextIndent(restLine = 12.sp))
     Text(
         text = buildAnnotatedString {
-            messages.forEach {
+            filteredMessages.forEach {message ->
                 withStyle(style = paragraphStyle) {
                     append(bullet)
                     append("\t\t")
-                    append(filme.elenco)
+                    append(message.trim())
                 }
             }
         },
@@ -78,3 +84,4 @@ private fun AdicionaBullet(filme: Filme) {
         fontSize = 20.sp
     )
 }
+
