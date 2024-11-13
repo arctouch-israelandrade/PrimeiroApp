@@ -10,17 +10,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.arctouch.primeiroapp.repository.FilmesUiState
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Filme(
     val titulo: String,
     val descricao: String,
-    val elenco: List<String>,
+    val elenco: String,
 ) : Parcelable
 
 @Composable
