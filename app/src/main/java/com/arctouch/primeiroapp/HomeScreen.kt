@@ -47,12 +47,12 @@ fun Homescreen(navController: NavHostController, viewModel: FilmesViewModel) {
 
         }
 
-        is FilmesUiState.Carregando -> {
+        FilmesUiState.Carregando -> {
             Text(text = "Carregando...", modifier = Modifier.padding(16.dp))
         }
 
-        else -> {
-            println("Erro...")
+        is FilmesUiState.Erro -> {
+            Text(text = "Erro...", modifier = Modifier.padding(16.dp))
         }
     }
 
