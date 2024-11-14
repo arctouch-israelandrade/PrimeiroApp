@@ -1,6 +1,5 @@
 package com.arctouch.primeiroapp
 
-import android.content.Context
 import android.os.Parcelable
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.padding
@@ -8,9 +7,10 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import kotlinx.android.parcel.Parcelize
 
@@ -18,32 +18,46 @@ import kotlinx.android.parcel.Parcelize
 data class Filme(
     val titulo: String,
     val descricao: String,
-    val elenco: List<String>,
+    val elenco: String,
 ) : Parcelable
 
 @Composable
-fun Homescreen(
-    navController: NavHostController,
-    filmesViewModel: FilmesViewModel
-) {
+fun Homescreen(navController: NavHostController, viewModel: FilmesViewModel) {
+    viewModel.buscarFilmes()
+    val uiState by viewModel.uiState.collectAsState()
 
-    val filmes = filmesViewModel.buscarFilmes()
 
-    LazyColumn {
-        items(filmes) { filme ->
-            Text(text = filme.titulo, modifier = Modifier
-                .clickable {
-                    navController.currentBackStackEntry?.savedStateHandle?.set(
-                        "filme", filme
-                    )
-                    navController.navigate(DETALHES)
+    when (uiState) {
+        is FilmesUiState.Carregado -> {
+            val filmes = (uiState as FilmesUiState.Carregado).filmes
+
+            LazyColumn {
+                items(filmes) { filme ->
+                    Text(text = filme.titulo, modifier = Modifier
+                        .clickable {
+                            navController.currentBackStackEntry?.savedStateHandle?.set(
+                                "filme", filme
+                            )
+                            navController.navigate(DETALHES)
+                        }
+                        .padding(16.dp))
                 }
-                .padding(16.dp))
+
+            }
+
         }
 
+        FilmesUiState.Carregando -> {
+            Text(text = "Carregando...", modifier = Modifier.padding(16.dp))
+        }
 
+        is FilmesUiState.Erro -> {
+            Text(text = "Erro...", modifier = Modifier.padding(16.dp))
+        }
     }
+
 }
+
 
 
 

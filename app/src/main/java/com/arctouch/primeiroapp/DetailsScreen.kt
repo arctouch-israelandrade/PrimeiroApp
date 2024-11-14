@@ -70,7 +70,7 @@ private fun adicionaBullet(filme: Filme) {
                 withStyle(style = paragraphStyle) {
                     append(bullet)
                     append("\t\t")
-                    append(it)
+                    append(filme.elenco)
                 }
             }
         },
