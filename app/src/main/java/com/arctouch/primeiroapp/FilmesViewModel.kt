@@ -15,12 +15,12 @@ class FilmesViewModel @Inject constructor(
     private val filmes: FilmesRepository,
 ) : ViewModel() {
 
+
     private val _uiState = MutableStateFlow<FilmesUiState>(FilmesUiState.Carregando)
     val uiState = _uiState.asStateFlow()
 
     fun buscarFilmes() {
         viewModelScope.launch {
-            delay(2000)
             val listaDeFilme = filmes.buscarFilmes()
             _uiState.value = FilmesUiState.Carregado(listaDeFilme)
         }
