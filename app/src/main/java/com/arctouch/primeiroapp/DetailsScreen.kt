@@ -28,7 +28,7 @@ fun DetailsScreen(filme: Filme?) {
             .fillMaxSize()
             .background(color = Color.Gray)
             .verticalScroll(rememberScrollState())
-            .padding(16.dp)
+            .padding(20.dp)
     ) {
         Column {
             if (filme != null) {
@@ -50,7 +50,7 @@ fun DetailsScreen(filme: Filme?) {
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                adicionaBullet(filme)
+                AdicionaBullet(filme)
 
             }
 
@@ -60,17 +60,23 @@ fun DetailsScreen(filme: Filme?) {
 }
 
 @Composable
-private fun adicionaBullet(filme: Filme) {
+private fun AdicionaBullet(filme: Filme) {
     val bullet = "\u2022"
-    val messages = filme.elenco
+    val elencoString = filme.elenco
+    val messages = elencoString.split("\\n")
+
+    val filteredMessages = messages
+        .map { it.trim() }
+        .filter { it.isNotEmpty() }
+
     val paragraphStyle = ParagraphStyle(textIndent = TextIndent(restLine = 12.sp))
     Text(
         text = buildAnnotatedString {
-            messages.forEach {
+            filteredMessages.forEach {message ->
                 withStyle(style = paragraphStyle) {
                     append(bullet)
                     append("\t\t")
-                    append(filme.elenco)
+                    append(message.trim())
                 }
             }
         },
@@ -78,3 +84,4 @@ private fun adicionaBullet(filme: Filme) {
         fontSize = 20.sp
     )
 }
+
