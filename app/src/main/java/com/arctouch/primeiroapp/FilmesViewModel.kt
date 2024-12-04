@@ -3,7 +3,6 @@ package com.arctouch.primeiroapp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -20,7 +19,6 @@ class FilmesViewModel @Inject constructor(
 
     fun buscarFilmes() {
         viewModelScope.launch {
-            delay(2000)
             val listaDeFilme = filmes.buscarFilmes()
             _uiState.value = FilmesUiState.Carregado(listaDeFilme)
         }
