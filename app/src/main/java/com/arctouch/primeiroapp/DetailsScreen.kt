@@ -74,8 +74,8 @@ private fun AdicionaBullet(filme: Filme) {
         text = buildAnnotatedString {
             filteredMessages.forEachIndexed { index, message ->
                 withStyle(style = paragraphStyle) {
-                    if (index > 0){
-                    append(bullet)
+                    if (index > 0) {
+                        append(bullet)
                     }
                     append("\t\t")
                     append(message.trim())
