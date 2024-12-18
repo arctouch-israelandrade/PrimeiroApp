@@ -67,7 +67,6 @@ fun PerfilScreen(
             fontSize = 24.sp
         )
 
-
         Spacer(modifier = Modifier.height(16.dp))
 
         Row(
@@ -94,27 +93,28 @@ fun PerfilScreen(
             }
         }
 
-        Button(onClick = {
-            if (nomesalva.isBlank() || idadeSalva.isBlank()) {
-                Toast.makeText(
-                    context,
-                    "Não é possível salvar com campos vazios.",
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
-                val perfilDadosParaGravacao = PerfilData(
-                    idadeSalva,
-                    nomesalva
-                )
-                perfilViewModel.gravarDados(perfilDadosParaGravacao)
+        Button(
+            onClick = {
+                if (nomesalva.isBlank() || idadeSalva.isBlank()) {
+                    Toast.makeText(
+                        context,
+                        "Não é possível salvar com campos vazios.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    val perfilDadosParaGravacao = PerfilData(
+                        idadeSalva,
+                        nomesalva
+                    )
+                    perfilViewModel.gravarDados(perfilDadosParaGravacao)
 
-                Toast.makeText(
-                    context,
-                    "Dados salvos com sucesso!",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        },
+                    Toast.makeText(
+                        context,
+                        "Dados salvos com sucesso!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            },
             modifier = Modifier
                 .width(265.dp)
                 .height(56.dp)
@@ -126,5 +126,3 @@ fun PerfilScreen(
     }
 
 }
-
-
