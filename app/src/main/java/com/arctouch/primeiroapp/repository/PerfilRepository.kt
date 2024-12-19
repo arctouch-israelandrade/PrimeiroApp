@@ -15,8 +15,8 @@ class PerfilRepository @Inject constructor(
     )
 
     fun buscarDados(): PerfilData {
-        val idadeSharedPreferences = sharedPref.getString(SHARED_PREFS_IDADE, "-") ?: ""
-        val nomeSharedPreferences = sharedPref.getString(SHARED_PREFS_NOME, "-") ?: ""
+        val idadeSharedPreferences = sharedPref.getString(SHARED_PREFS_IDADE, "") ?: ""
+        val nomeSharedPreferences = sharedPref.getString(SHARED_PREFS_NOME, "") ?: ""
         return PerfilData(idadeSharedPreferences, nomeSharedPreferences)
     }
 

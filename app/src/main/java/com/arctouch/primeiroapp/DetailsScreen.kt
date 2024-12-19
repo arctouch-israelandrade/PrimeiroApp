@@ -26,7 +26,7 @@ fun DetailsScreen(filme: Filme?) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = Color.Gray)
+            .background(color = Color.White)
             .verticalScroll(rememberScrollState())
             .padding(20.dp)
     ) {
@@ -72,9 +72,11 @@ private fun AdicionaBullet(filme: Filme) {
     val paragraphStyle = ParagraphStyle(textIndent = TextIndent(restLine = 12.sp))
     Text(
         text = buildAnnotatedString {
-            filteredMessages.forEach {message ->
+            filteredMessages.forEachIndexed { index, message ->
                 withStyle(style = paragraphStyle) {
-                    append(bullet)
+                    if (index > 0) {
+                        append(bullet)
+                    }
                     append("\t\t")
                     append(message.trim())
                 }
