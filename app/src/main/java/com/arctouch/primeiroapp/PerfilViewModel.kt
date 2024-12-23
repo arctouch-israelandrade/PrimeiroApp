@@ -1,7 +1,7 @@
 package com.arctouch.primeiroapp
 
 import androidx.lifecycle.ViewModel
-import com.arctouch.primeiroapp.repository.PerfilData
+import com.arctouch.primeiroapp.models.PerfilData
 import com.arctouch.primeiroapp.repository.PerfilRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

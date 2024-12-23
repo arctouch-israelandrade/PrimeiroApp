@@ -1,5 +1,9 @@
-package com.arctouch.primeiroapp
+package com.arctouch.primeiroapp.repository
 
+import com.arctouch.primeiroapp.ApiService
+import com.arctouch.primeiroapp.BuilderRetrofit
+import com.arctouch.primeiroapp.CHAVE_API
+import com.arctouch.primeiroapp.models.Filme
 import javax.inject.Inject
 
 class FilmesRepository @Inject constructor() {
@@ -22,4 +26,4 @@ class FilmesRepository @Inject constructor() {
             return listOf()
         }
     }
-}           
+}

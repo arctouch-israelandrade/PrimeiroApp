@@ -1,6 +1,5 @@
 package com.arctouch.primeiroapp
 
-import android.os.Parcelable
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
@@ -33,14 +32,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import kotlinx.android.parcel.Parcelize
-
-@Parcelize
-data class Filme(
-    val titulo: String,
-    val descricao: String,
-    val elenco: String,
-) : Parcelable
 
 @Composable
 fun Homescreen(navController: NavHostController, viewModel: FilmesViewModel) {

@@ -1,6 +1,6 @@
 package com.arctouch.primeiroapp
 
-import com.arctouch.primeiroapp.repository.PerfilData
+import com.arctouch.primeiroapp.models.PerfilData
 import com.arctouch.primeiroapp.repository.PerfilRepository
 import io.mockk.confirmVerified
 import io.mockk.every

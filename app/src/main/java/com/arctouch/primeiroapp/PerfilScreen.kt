@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
-import com.arctouch.primeiroapp.repository.PerfilData
+import com.arctouch.primeiroapp.models.PerfilData
 
 const val PRIMEIRO_APP_SHARED_PREFERNCES = "PrimeiroAppSharedPreferences"
 const val SHARED_PREFS_NOME = "nome"

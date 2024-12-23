@@ -1,4 +1,4 @@
-package com.arctouch.primeiroapp.repository
+package com.arctouch.primeiroapp.models
 
 data class PerfilData(
     val idade: String,

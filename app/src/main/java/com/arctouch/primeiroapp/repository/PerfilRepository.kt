@@ -4,6 +4,7 @@ import android.content.Context
 import com.arctouch.primeiroapp.PRIMEIRO_APP_SHARED_PREFERNCES
 import com.arctouch.primeiroapp.SHARED_PREFS_IDADE
 import com.arctouch.primeiroapp.SHARED_PREFS_NOME
+import com.arctouch.primeiroapp.models.PerfilData
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
