@@ -1,11 +1,9 @@
 package com.arctouch.primeiroapp.models
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import java.io.Serializable
 
-@Parcelize
 data class Filme(
     val titulo: String,
     val descricao: String,
     val elenco: String,
-) : Parcelable
+) : Serializable
