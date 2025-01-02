@@ -24,6 +24,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.arctouch.primeiroapp.models.Filme
 import com.arctouch.primeiroapp.ui.theme.PrimeiroAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
